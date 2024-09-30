@@ -1,32 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function Search({ initialQuery, onSearch }) {
-  const [query, setQuery] = useState(initialQuery);
+function Search(props) {
+  const [query, setQuery] = useState(props.initialQuery);
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      onSearch(query);
-    }
-  };
-
-  const handleClick = () => {
-    onSearch(query);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.onSearch(query);
   };
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         value={query}
         onChange={handleInputChange}
-        onKeyDown={handleKeyPress}
       />
-      <button onClick={handleClick}>Search</button>
-    </div>
+      <button type="submit">Search</button>
+    </form>
   );
 }
 
