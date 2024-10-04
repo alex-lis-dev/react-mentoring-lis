@@ -1,0 +1,18 @@
+.movie-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .movie-poster {
+    width: 200px;
+    height: 300px;
+    margin-right: 20px;
+  }
+  
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
