@@ -18,6 +18,7 @@ function Search(props) {
         type="text"
         value={query}
         onChange={handleInputChange}
+        onKeyPress={handleSubmit}
       />
       <button type="submit">Search</button>
     </form>

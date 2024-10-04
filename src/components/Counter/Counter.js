@@ -24,9 +24,9 @@ class Counter extends React.Component {
     return React.createElement(
       "div",
       {},
-      React.createElement("button", { onClick: this.decrement }, "-"),
-      React.createElement("span", {}, ` ${this.state.value} `),
-      React.createElement("button", { onClick: this.increment }, "+")
+      React.createElement("button", { 'data-cy':'decrement-button', onClick: this.decrement }, "-"),
+      React.createElement("span", {'data-cy': 'counter-value'}, ` ${this.state.value} `),
+      React.createElement("button", { 'data-cy':'increment-button', onClick: this.increment }, "+")
     );
   }
 }
