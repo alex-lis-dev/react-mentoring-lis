@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-function Search(props) {
-  const [query, setQuery] = useState(props.initialQuery);
+const Search = ({initialQuery, onSearch}) =>  {
+  const [query, setQuery] = useState(initialQuery);
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
@@ -9,7 +10,7 @@ function Search(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.onSearch(query);
+    onSearch(query);
   };
 
   return (
@@ -26,3 +27,12 @@ function Search(props) {
 }
 
 export default Search;
+
+Search.propTypes = {
+  initialQuery: PropTypes.string,
+  onSearch: PropTypes.func
+};
+
+Search.defaultProps = {
+  initialQuery: "What do you want?"
+};

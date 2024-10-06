@@ -7,38 +7,18 @@ import MovieTile from "./components/MovieTile/MovieTile";
 import mockedMoviesList from "./mockedData/mockedMoviesList";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 import SortControl from "./components/SortControl/SortControl";
+import dateComparer from "./helpers/dateComparer";
+import titleComparer from "./helpers/titleComparer";
+import sortOptions from "./helpers/sortOptions";
 
 function App() {
   const [selectedMovie, setSelectedMovie] = useState();
-  const [sortOption, setSortOption] = useState("releaseDate");
+  const [sortOption, setSortOption] = useState(sortOptions[0]);
   const [orderedMovies, setOrderedMovies] = useState(mockedMoviesList);
-  const TitleSort = (a, b) => {
-    const titleA = a.title.toLowerCase();
-    const titleB = b.title.toLowerCase();
-    if (titleA < titleB) {
-      return -1;
-    }
-    if (titleA > titleB) {
-      return 1;
-    }
-    return 0;
-  };
-
-  const DateSort = (a, b) => {
-    const dateA = new Date(a.release_date);
-    const dateB = new Date(b.release_date);
-    if (dateA < dateB) {
-      return -1;
-    }
-    if (dateA > dateB) {
-      return 1;
-    }
-    return 0;
-  };
 
   useEffect(() => {
     const sortedItems = [...orderedMovies].sort((a, b) =>
-      sortOption === "releaseDate" ? DateSort(a, b) : TitleSort(a, b)
+      sortOption === sortOptions[0] ? dateComparer(a, b) : titleComparer(a, b)
     );
     setOrderedMovies(sortedItems);
   }, [orderedMovies, sortOption]);
@@ -58,11 +38,9 @@ function App() {
   const handleSortChange = (value) => {
     setSortOption(value);
     const sorted = mockedMoviesList.sort((x) =>
-      value === "releaseDate" ? x.release_date : x.title
+      value === sortOptions[0] ? x.release_date : x.title
     );
-    console.log("Movies", sorted);
     setOrderedMovies(sorted);
-    console.log("Sort by", value);
   };
 
   const genres = ["ALL", "DOCUMENTARY", "COMEDY", "HORROR", "CRIME"];
