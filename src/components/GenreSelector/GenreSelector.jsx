@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const GenreSelector = ({ genres, selectedGenre, onSelect }) => {
   return (
@@ -21,3 +22,22 @@ const GenreSelector = ({ genres, selectedGenre, onSelect }) => {
 };
 
 export default GenreSelector;
+
+GenreSelector.propTypes = {
+  genres: PropTypes.array,
+  selectedGenre: PropTypes.string,
+  onSelect: PropTypes.func,
+};
+
+GenreSelector.defaultProps = {
+  genres: [
+    "All",
+    "Action",
+    "Mystery",
+    "Science Fiction",
+    "Thriller",
+    "Adventure",
+    "Fantasy",
+  ],
+  selectedGenre: "All"
+};
