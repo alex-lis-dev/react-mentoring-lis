@@ -1,4 +1,5 @@
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
+const path = require("path");
 const config = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
@@ -13,6 +14,6 @@ const config = {
     name: "@storybook/react-webpack5",
     options: {},
   },
-  staticDirs: ["..\\public"],
+  staticDirs: [path.join("..", "public")],
 };
 export default config;
