@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 
-const MovieTile = ({ imageUrl, name, releaseYear, genres, onClick })=> {
+const MovieTile = ({ imageUrl, name, releaseDate, genres, onClick })=> {
+
+  const releaseYear = useMemo(() => new Date(releaseDate).getFullYear(), [releaseDate]);
     return (
       <div onClick={onClick}>
         <img src={imageUrl} alt={name} className="movie-poster"/>
@@ -18,7 +21,7 @@ const MovieTile = ({ imageUrl, name, releaseYear, genres, onClick })=> {
     onClick: PropTypes.func,
     imageUrl: PropTypes.string,
     name: PropTypes.string,
-    releaseYear: PropTypes.number,
+    releaseDate: PropTypes.string,
     genres: PropTypes.array
   };
   

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Counter from "./components/Counter/Counter";
 import GenreSelector from "./components/GenreSelector/GenreSelector";
@@ -14,14 +14,9 @@ import sortOptions from "./helpers/sortOptions";
 function App() {
   const [selectedMovie, setSelectedMovie] = useState();
   const [sortOption, setSortOption] = useState(sortOptions[0]);
-  const [orderedMovies, setOrderedMovies] = useState(mockedMoviesList);
-
-  useEffect(() => {
-    const sortedItems = [...orderedMovies].sort((a, b) =>
-      sortOption === sortOptions[0] ? dateComparer(a, b) : titleComparer(a, b)
-    );
-    setOrderedMovies(sortedItems);
-  }, [orderedMovies, sortOption]);
+  const [orderedMovies, setOrderedMovies] = useState(mockedMoviesList.sort((a, b) =>
+    sortOption === sortOptions[0] ? dateComparer(a, b) : titleComparer(a, b)
+  ));
 
   const handleSearch = (param) => {
     alert(param);
@@ -36,11 +31,11 @@ function App() {
   };
 
   const handleSortChange = (value) => {
-    setSortOption(value);
-    const sorted = mockedMoviesList.sort((x) =>
-      value === sortOptions[0] ? x.release_date : x.title
+    const sortedItems = mockedMoviesList.sort((a, b) =>
+      sortOption === sortOptions[0] ? dateComparer(a, b) : titleComparer(a, b)
     );
-    setOrderedMovies(sorted);
+    setSortOption(value);
+    setOrderedMovies(sortedItems);
   };
 
   const genres = ["ALL", "DOCUMENTARY", "COMEDY", "HORROR", "CRIME"];
@@ -53,7 +48,12 @@ function App() {
           initialQuery="What do you want to watch?"
           onSearch={handleSearch}
         ></Search>
-        <MovieDetails movie={selectedMovie} />
+
+        {Boolean(selectedMovie) && (
+          <div>
+            <MovieDetails movie={selectedMovie} />
+          </div>
+        )}
       </header>
 
       <div className="App-body">
@@ -73,7 +73,7 @@ function App() {
               imageUrl={movie.poster_path}
               key={index}
               name={movie.title}
-              releaseYear={new Date(movie.release_date).getFullYear()}
+              releaseDate={movie.release_date}
               genres={movie.genres}
               onClick={() => handleMovieClick(movie.id)}
             />

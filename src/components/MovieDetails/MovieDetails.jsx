@@ -3,7 +3,7 @@ import "./MovieDetails.css";
 import PropTypes from "prop-types";
 
 const MovieDetails = ({ movie }) => {
-  return movie ? (
+  return (
     <div className="movie-details">
       <img src={movie.poster_path} alt={movie.title} className="movie-poster" />
       <div className="movie-info">
@@ -14,8 +14,6 @@ const MovieDetails = ({ movie }) => {
         <p>{movie.overview}</p>
       </div>
     </div>
-  ) : (
-    ""
   );
 };
 
@@ -33,5 +31,5 @@ MovieDetails.propTypes = {
 };
 
 MovieDetails.defaultProps = {
-  movie: null
+  movie: null,
 };

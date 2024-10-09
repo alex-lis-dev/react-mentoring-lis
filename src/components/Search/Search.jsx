@@ -34,5 +34,5 @@ Search.propTypes = {
 };
 
 Search.defaultProps = {
-  initialQuery: "What do you want?"
+  initialQuery: null
 };

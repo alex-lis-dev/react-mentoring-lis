@@ -4,7 +4,7 @@ import { fn } from "@storybook/test";
 const meta = {
   component: Search,
   args: {
-    initialQuery: "What do you want?",
+    initialQuery: null,
     onSearch: fn(),
   },
 };
