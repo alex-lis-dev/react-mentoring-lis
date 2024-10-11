@@ -2,7 +2,7 @@ import React from "react";
 import "./MovieDetails.css";
 import PropTypes from "prop-types";
 
-const MovieDetails = ({ movie }) => {
+const MovieDetails = ({ movie = null }) => {
   return (
     <div className="movie-details">
       <img src={movie.poster_path} alt={movie.title} className="movie-poster" />
@@ -28,8 +28,4 @@ MovieDetails.propTypes = {
     runtime: PropTypes.number.isRequired,
     overview: PropTypes.string.isRequired,
   }),
-};
-
-MovieDetails.defaultProps = {
-  movie: null,
 };

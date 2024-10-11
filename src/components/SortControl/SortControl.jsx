@@ -1,9 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import sortOptions from "../../helpers/sortOptions";
-import { SortByText,ReleaseDateText, TitleText } from "../../helpers/constants";
+import {
+  SortByText,
+  ReleaseDateText,
+  TitleText,
+} from "../../helpers/constants";
 
-const SortControl = ({ currentSelection, onSortChange }) => {
+const SortControl = ({ currentSelection = sortOptions[0], onSortChange }) => {
   const handleChange = (event) => {
     onSortChange(event.target.value);
   };
@@ -24,8 +28,4 @@ export default SortControl;
 SortControl.propTypes = {
   currentSelection: PropTypes.string.isRequired,
   onSortChange: PropTypes.func.isRequired,
-};
-
-SortControl.defaultProps = {
-  currentSelection: sortOptions[0],
 };

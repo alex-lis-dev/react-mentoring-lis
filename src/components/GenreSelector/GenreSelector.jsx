@@ -1,7 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const GenreSelector = ({ genres, selectedGenre, onSelect }) => {
+const GenreSelector = ({
+  genres = [
+    "All",
+    "Action",
+    "Mystery",
+    "Science Fiction",
+    "Thriller",
+    "Adventure",
+    "Fantasy",
+  ],
+  selectedGenre = "All",
+  onSelect,
+}) => {
   return (
     <div>
       {genres.map((genre, index) => (
@@ -27,17 +39,4 @@ GenreSelector.propTypes = {
   genres: PropTypes.array,
   selectedGenre: PropTypes.string,
   onSelect: PropTypes.func,
-};
-
-GenreSelector.defaultProps = {
-  genres: [
-    "All",
-    "Action",
-    "Mystery",
-    "Science Fiction",
-    "Thriller",
-    "Adventure",
-    "Fantasy",
-  ],
-  selectedGenre: "All"
 };

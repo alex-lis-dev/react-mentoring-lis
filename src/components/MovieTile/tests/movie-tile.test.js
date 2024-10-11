@@ -7,7 +7,7 @@ describe('MovieTile Component', () => {
   const defaultProps = {
     imageUrl: 'http://example.com/image.jpg',
     name: 'Vertigo',
-    releaseYear: '2010',
+    releaseDate: "2021-07-20",
     genres: ['Action', 'Comedy'],
     onClick: mockOnClick
   };
@@ -20,7 +20,7 @@ describe('MovieTile Component', () => {
     expect(image).toHaveAttribute('alt', defaultProps.name);
 
     expect(screen.getByText(defaultProps.name)).toBeInTheDocument();
-    expect(screen.getByText(defaultProps.releaseYear)).toBeInTheDocument();
+    expect(screen.getByText('2021')).toBeInTheDocument();
     expect(screen.getByText(defaultProps.genres.join(', '))).toBeInTheDocument();
   });
 
