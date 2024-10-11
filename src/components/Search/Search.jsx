@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-const Search = ({ initialQuery = null, onSearch }) => {
-  const [query, setQuery] = useState(initialQuery);
+const Search = ({ initialQuery = null, placeholder, onSearch }) => {
+  //const [query, setQuery] = useState(initialQuery);
 
   const handleInputChange = (e) => {
-    setQuery(e.target.value);
+    //setQuery(e.target.value);
+    onSearch(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(query);
+    onSearch(initialQuery);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={query}
+        value={initialQuery}
         onChange={handleInputChange}
-        onKeyPress={handleSubmit}
+        placeholder={placeholder}
       />
       <button type="submit">Search</button>
     </form>
@@ -31,4 +32,5 @@ export default Search;
 Search.propTypes = {
   initialQuery: PropTypes.string,
   onSearch: PropTypes.func,
+  placeholder: PropTypes.string,
 };

@@ -5,6 +5,7 @@ const meta = {
   component: Search,
   args: {
     initialQuery: null,
+    placeholder: 'What do you want?',
     onSearch: fn(),
   },
 };
