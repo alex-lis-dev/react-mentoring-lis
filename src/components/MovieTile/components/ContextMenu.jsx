@@ -23,16 +23,9 @@ const ContextMenu = ({handleEditItemCLick, handleDeleteItemClick }) => {
   );
 };
 
-ContextMenu.propTypes = {
-  id: PropTypes.number.isRequired, 
-  handleEditItemCLick: PropTypes.func.isRequired, 
-  handleDeleteItemClick: PropTypes.func.isRequired
-};
-
-ContextMenu.defaultProps = {
-  id: null,
-  handleEditItemCLick: () => console.warn('Edit Click not implemented'),
-  handleDeleteItemClick: () => console.warn('Delete Click not implemented')
-};
-
 export default ContextMenu;
+
+ContextMenu.propTypes = {
+  handleEditItemCLick: PropTypes.func, 
+  handleDeleteItemClick: PropTypes.func
+};

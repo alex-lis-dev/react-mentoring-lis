@@ -36,10 +36,3 @@ MovieTile.propTypes = {
   onDeleteClick: PropTypes.func,
   id: PropTypes.number
 };
-
-MovieTile.defaultProps = {
-  imageUrl: null,
-  name: null,
-  releaseYear: null,
-  genres: null,
-};

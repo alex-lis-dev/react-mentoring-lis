@@ -13,8 +13,7 @@ import sortOptions from "./helpers/sortOptions";
 import Dialog from "./components/Dialog/Dialog";
 import { AddMovieButtonText, AddMovieText } from "./helpers/constants";
 import MovieForm from "./components/MovieForm/MovieForm.jsx";
-import DeleteMovie from "./components/MovieForm/components/DeleteMovie.jsx";
-
+import DeleteMovie from "./components/MovieForm/components/DeleteMovie/DeleteMovie";
 function App() {
   const [selectedMovie, setSelectedMovie] = useState();
   const [selectedGenre, setSelectedGenre] = useState("All");

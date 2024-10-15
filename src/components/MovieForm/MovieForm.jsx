@@ -32,7 +32,7 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
       <div className="form-field">
         <label htmlFor="title">{MovieForm_Title}</label>
         <input
-          value={initialMovie ? initialMovie.title : ""}
+          defaultValue={initialMovie ? initialMovie.title : ""}
           name="title"
           id="title"
           type="text"
@@ -42,7 +42,7 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
       <div className="form-field">
         <label htmlFor="releaseDate">{MovieForm_ReleaseDate}</label>
         <input
-          value={initialMovie ? initialMovie.release_date : ""}
+          defaultValue={initialMovie ? initialMovie.release_date : ""}
           name="releaseDate"
           id="releaseDate"
           type="date"
@@ -52,7 +52,7 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
       <div className="form-field">
         <label htmlFor="movieUrl">{MovieForm_MovieUrl}</label>
         <input
-          value={initialMovie ? initialMovie.poster_path : ""}
+          defaultValue={initialMovie ? initialMovie.poster_path : ""}
           name="movieUrl"
           id="movieUrl"
           type="text"
@@ -62,7 +62,7 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
       <div className="form-field">
         <label htmlFor="rating">{MovieForm_Rating}</label>
         <input
-          value={initialMovie ? initialMovie.vote_average : ""}
+          defaultValue={initialMovie ? initialMovie.vote_average : ""}
           name="rating"
           id="rating"
           type="number"
@@ -72,7 +72,7 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
       <div className="form-field">
         <label htmlFor="genre">{MovieForm_Genre}</label>
         <input
-          value={initialMovie ? initialMovie.genres : ""}
+          defaultValue={initialMovie ? initialMovie.genres.join(', ') : ""}
           name="genre"
           id="genre"
           type="text"
@@ -82,7 +82,7 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
       <div className="form-field">
         <label htmlFor="runtime">{MovieForm_Runtime}</label>
         <input
-          value={initialMovie ? initialMovie.runtime : ""}
+          defaultValue={initialMovie ? initialMovie.runtime : ""}
           name="runtime"
           id="runtime"
           type="number"
@@ -93,7 +93,7 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
       <div className="form-field">
         <label htmlFor="overview">{MovieForm_Overview}</label>
         <textarea 
-          value={initialMovie ? initialMovie.overview : ""}
+          defaultValue={initialMovie ? initialMovie.overview : ""}
           name="overview"
           id="overview"
           placeholder={MovieForm_Overview_Placeholder}

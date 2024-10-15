@@ -17,3 +17,5 @@ export const MovieForm_Rating_Placeholder = "Rating";
 export const MovieForm_Genre_Placeholder = "Select genre";
 export const MovieForm_Runtime_Placeholder = "minutes";
 export const MovieForm_Overview_Placeholder = "Movie description";
+export const DeleteMovieConfirmationQuestion = "Are you sure you want to delete this movie?";
+export const DeleteMovieConfirm = "CONFIRM";
