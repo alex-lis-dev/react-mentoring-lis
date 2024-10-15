@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import MovieTile from '../MovieTile'; // Adjust the import path as necessary
+import MovieTile from '../MovieTile';
 
 describe('MovieTile Component', () => {
   const mockOnClick = jest.fn();
