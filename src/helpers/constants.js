@@ -1,6 +1,6 @@
-export const SortByText = "Sort By";
-export const ReleaseDateText = "Release Date";
-export const TitleText = "Title";
+export const SortByText = "SORT BY";
+export const ReleaseDateText = "RELEASE DATE";
+export const TitleText = "TITLE";
 export const AddMovieText = "ADD MOVIE";
 export const AddMovieButtonText = "+ ADD MOVIE";
 export const MovieForm_Title = "TITLE:";
