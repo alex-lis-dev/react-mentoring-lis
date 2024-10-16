@@ -2,25 +2,39 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
 import ContextMenu from "./components/ContextMenu.jsx";
+import "./MovieTile.css";
 
-const MovieTile = ({ id, imageUrl, name, releaseDate, genres, onClick, onEditClick, onDeleteClick}) => {
+const MovieTile = ({
+  id,
+  imageUrl,
+  name,
+  releaseDate,
+  genres,
+  onClick,
+  onEditClick,
+  onDeleteClick,
+}) => {
   const releaseYear = useMemo(
     () => new Date(releaseDate).getFullYear(),
     [releaseDate]
   );
-  
+
   return (
-    <>
-    <div>
-      <ContextMenu id={id} handleEditItemCLick={onEditClick} handleDeleteItemClick={onDeleteClick}></ContextMenu>
+    <div className="movie-tile-container">
+      <div>
+        <ContextMenu
+          id={id}
+          handleEditItemCLick={onEditClick}
+          handleDeleteItemClick={onDeleteClick}
+        ></ContextMenu>
       </div>
       <div onClick={onClick}>
         <img src={imageUrl} alt={name} className="movie-poster" />
-        <h2>{name}</h2>
-        <p>{releaseYear}</p>
-        <p>{genres.join(", ")}</p>
+        <div className="movie-name">{name}</div>
+        <div className="movie-year">{releaseYear}</div>
+        <div className="movie-genres">{genres.join(", ")}</div>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -34,5 +48,5 @@ MovieTile.propTypes = {
   genres: PropTypes.array,
   onEditClick: PropTypes.func,
   onDeleteClick: PropTypes.func,
-  id: PropTypes.number
+  id: PropTypes.number,
 };

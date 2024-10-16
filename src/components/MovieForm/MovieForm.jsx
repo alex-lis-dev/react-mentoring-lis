@@ -27,72 +27,72 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} >
+    <form name="MovieForm" onSubmit={handleSubmit}>
       <div className="movie-form">
-      <div className="form-field">
-        <label htmlFor="title">{MovieForm_Title}</label>
-        <input
-          defaultValue={initialMovie ? initialMovie.title : ""}
-          name="title"
-          id="title"
-          type="text"
-          placeholder={MovieForm_Title_Placeholder}
-        />
-      </div>
-      <div className="form-field">
-        <label htmlFor="releaseDate">{MovieForm_ReleaseDate}</label>
-        <input
-          defaultValue={initialMovie ? initialMovie.release_date : ""}
-          name="releaseDate"
-          id="releaseDate"
-          type="date"
-          placeholder={MovieForm_ReleaseDate_Placeholder}
-        />
-      </div>
-      <div className="form-field">
-        <label htmlFor="movieUrl">{MovieForm_MovieUrl}</label>
-        <input
-          defaultValue={initialMovie ? initialMovie.poster_path : ""}
-          name="movieUrl"
-          id="movieUrl"
-          type="text"
-          placeholder={MovieForm_MovieUrl_Placeholder}
-        />
-      </div>
-      <div className="form-field">
-        <label htmlFor="rating">{MovieForm_Rating}</label>
-        <input
-          defaultValue={initialMovie ? initialMovie.vote_average : ""}
-          name="rating"
-          id="rating"
-          type="number"
-          placeholder={MovieForm_Rating_Placeholder}
-        />
-      </div>
-      <div className="form-field">
-        <label htmlFor="genre">{MovieForm_Genre}</label>
-        <input
-          defaultValue={initialMovie ? initialMovie.genres.join(', ') : ""}
-          name="genre"
-          id="genre"
-          type="text"
-          placeholder={MovieForm_Genre_Placeholder}
-        />
-      </div>
-      <div className="form-field">
-        <label htmlFor="runtime">{MovieForm_Runtime}</label>
-        <input
-          defaultValue={initialMovie ? initialMovie.runtime : ""}
-          name="runtime"
-          id="runtime"
-          type="number"
-          placeholder={MovieForm_Runtime_Placeholder}
-        />
-      </div>
+        <div className="form-field">
+          <label htmlFor="title">{MovieForm_Title}</label>
+          <input
+            defaultValue={initialMovie ? initialMovie.title : ""}
+            name="title"
+            id="title"
+            type="text"
+            placeholder={MovieForm_Title_Placeholder}
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="releaseDate">{MovieForm_ReleaseDate}</label>
+          <input
+            defaultValue={initialMovie ? initialMovie.release_date : ""}
+            name="releaseDate"
+            id="releaseDate"
+            type="date"
+            placeholder={MovieForm_ReleaseDate_Placeholder}
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="movieUrl">{MovieForm_MovieUrl}</label>
+          <input
+            defaultValue={initialMovie ? initialMovie.poster_path : ""}
+            name="movieUrl"
+            id="movieUrl"
+            type="text"
+            placeholder={MovieForm_MovieUrl_Placeholder}
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="rating">{MovieForm_Rating}</label>
+          <input
+            defaultValue={initialMovie ? initialMovie.vote_average : ""}
+            name="rating"
+            id="rating"
+            type="number"
+            placeholder={MovieForm_Rating_Placeholder}
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="genre">{MovieForm_Genre}</label>
+          <input
+            defaultValue={initialMovie ? initialMovie.genres.join(", ") : ""}
+            name="genre"
+            id="genre"
+            type="text"
+            placeholder={MovieForm_Genre_Placeholder}
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="runtime">{MovieForm_Runtime}</label>
+          <input
+            defaultValue={initialMovie ? initialMovie.runtime : ""}
+            name="runtime"
+            id="runtime"
+            type="number"
+            placeholder={MovieForm_Runtime_Placeholder}
+          />
+        </div>
       </div>
       <div className="form-field">
         <label htmlFor="overview">{MovieForm_Overview}</label>
-        <textarea 
+        <textarea
           defaultValue={initialMovie ? initialMovie.overview : ""}
           name="overview"
           id="overview"

@@ -18,7 +18,7 @@
 }
 
 .App-header {
-  background-color: #424242;
+  background-color: #232323;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -44,11 +44,13 @@
 
 .App-body {
   width: 1200px;
-  background-color: #424242;
+  background-color: #232323;
 }
 
 .App-movie-tiles {
   display: flex;
   margin-left: 50px;
   margin-top: 50px;
+  /* display: grid;
+  grid-template-rows: auto auto; */
 }
