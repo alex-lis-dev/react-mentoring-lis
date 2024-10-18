@@ -17,7 +17,7 @@ describe('Genre selector component', () => {
   it('highlights the selected genre passed in props', () => {
     render(<GenreSelector genres={genres} selectedGenre={selectedGenre} onSelect={mockOnChangeEvent} />);
     const selectedButton = screen.getByText(selectedGenre);
-    expect(selectedButton).toHaveStyle('backgroundColor: #F65261');
+    expect(selectedButton).toHaveStyle('border-bottom: 3px solid #F65261');
   });
 
   it('calls an event to change the button style on genre button click', () => {

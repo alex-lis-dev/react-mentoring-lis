@@ -6,6 +6,7 @@ import {
   ReleaseDateText,
   TitleText,
 } from "../../helpers/constants";
+import "./SortControl.css"
 
 const SortControl = ({ currentSelection = sortOptions[0], onSortChange }) => {
   const handleChange = (event) => {
@@ -15,7 +16,7 @@ const SortControl = ({ currentSelection = sortOptions[0], onSortChange }) => {
   return (
     <div className="sort-control">
       <label>{SortByText}</label>
-      <select value={currentSelection} onChange={handleChange}>
+      <select className="sort-select" value={currentSelection} onChange={handleChange}>
         <option value={sortOptions[0]}>{ReleaseDateText}</option>
         <option value={sortOptions[1]}>{TitleText}</option>
       </select>

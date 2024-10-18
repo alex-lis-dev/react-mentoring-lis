@@ -1,0 +1,14 @@
+.genre-selector-container{    
+  display: flex;
+  justify-content: flex-start;
+}
+
+.genre-selector-container button{
+    all: unset;
+    background: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+}
