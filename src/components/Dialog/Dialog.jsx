@@ -8,15 +8,15 @@ const Dialog = ({ title, children, onClose }) => {
   return (
     <Portal>
       <FocusTrap>
-      <div className="dialog-backdrop">
-        <div role="dialog" className="dialog">
-          <div className="dialog-header">
-            <p>{title}</p>
-            <button onClick={onClose}>&times;</button>
+        <div className="dialog-backdrop">
+          <div role="dialog" className="dialog">
+            <div className="dialog-header">
+              <p>{title}</p>
+              <button onClick={onClose}>&times;</button>
+            </div>
+            <div className="dialog-body">{children}</div>
           </div>
-          <div className="dialog-body">{children}</div>
         </div>
-      </div>
       </FocusTrap>
     </Portal>
   );

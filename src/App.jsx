@@ -29,17 +29,17 @@ function App() {
 
   const [isOpen, setOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  
+
   const toggleDialog = () => setOpen(!isOpen);
   const toggleDeleteDialog = () => setIsDeleteOpen(!isDeleteOpen);
   const handleFormSubmit = (movieData) => {
     console.log(movieData);
     toggleDialog();
-};
+  };
 
-const handleDeleteMovie = () => {
-  toggleDeleteDialog();
-};
+  const handleDeleteMovie = () => {
+    toggleDeleteDialog();
+  };
 
   const handleSearch = (param) => {
     setSearchQuery(param);
@@ -81,10 +81,10 @@ const handleDeleteMovie = () => {
   const handleMovieEditClick = (param) => {
     setMovieToEdit(mockedMoviesList.find((movie) => movie.id === param));
     setOpen(true);
-  }; 
+  };
   const handleMovieDeleteClick = () => {
     setIsDeleteOpen(true);
-  };   
+  };
 
   const handleSortChange = (value) => {
     setSortOption(value);
@@ -105,7 +105,10 @@ const handleDeleteMovie = () => {
           <button onClick={toggleDialog}>{AddMovieButtonText}</button>
           {isOpen && (
             <Dialog title={AddMovieText} onClose={toggleDialog}>
-              <MovieForm onSubmit={handleFormSubmit} initialMovie={movieToEdit}/>
+              <MovieForm
+                onSubmit={handleFormSubmit}
+                initialMovie={movieToEdit}
+              />
             </Dialog>
           )}
         </div>
@@ -113,7 +116,7 @@ const handleDeleteMovie = () => {
         <div>
           {isDeleteOpen && (
             <Dialog title={"DELETE MOVIE"} onClose={toggleDeleteDialog}>
-              <DeleteMovie deleteMovieCLick={handleDeleteMovie}/>
+              <DeleteMovie deleteMovieCLick={handleDeleteMovie} />
             </Dialog>
           )}
         </div>
@@ -144,7 +147,7 @@ const handleDeleteMovie = () => {
         <div className="App-movie-tiles">
           {orderedMovies.map((movie, index) => (
             <MovieTile
-            id={movie.id}
+              id={movie.id}
               imageUrl={movie.poster_path}
               key={index}
               name={movie.title}
