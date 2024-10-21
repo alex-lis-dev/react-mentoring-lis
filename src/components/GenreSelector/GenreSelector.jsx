@@ -16,7 +16,7 @@ const GenreSelector = ({ genres, selectedGenre = "All", onSelect }) => {
           style={{
             backgroundColor: "#232323",
             color: "#FFFFFF",
-            "border-bottom":
+            borderBottom:
               "3px solid " + (genre === currentGenre ? "#F65261" : "#424242"),
           }}
           onClick={() => handleGenreClick(genre)}

@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { DeleteMovieConfirmationQuestion, DeleteMovieConfirm } from "../../../../helpers/constants";
+import {
+  DeleteMovieConfirmationQuestion,
+  DeleteMovieConfirm,
+} from "../../../../helpers/constants";
 
 const DeleteMovie = ({ deleteMovieCLick }) => {
   return (
@@ -14,5 +17,5 @@ const DeleteMovie = ({ deleteMovieCLick }) => {
 export default DeleteMovie;
 
 DeleteMovie.propTypes = {
-  deleteMovieCLick: PropTypes.func.isRequired
-}
+  deleteMovieCLick: PropTypes.func.isRequired,
+};

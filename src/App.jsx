@@ -20,6 +20,7 @@ function App() {
   const [sortOption, setSortOption] = useState(sortOptions[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [movieToEdit, setMovieToEdit] = useState();
+  const [movieToDelete, setMovieToDelete] = useState();
 
   const [orderedMovies, setOrderedMovies] = useState(
     mockedMoviesList.sort((a, b) =>
@@ -29,17 +30,23 @@ function App() {
 
   const [isOpen, setOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  
-  const toggleDialog = () => setOpen(!isOpen);
-  const toggleDeleteDialog = () => setIsDeleteOpen(!isDeleteOpen);
+
+  const toggleDialog = () => {
+    if (isOpen) setMovieToEdit();
+    setOpen(!isOpen);
+  };
+  const toggleDeleteDialog = () => {
+    if (isDeleteOpen) setMovieToDelete();
+    setIsDeleteOpen(!isDeleteOpen);
+  };
   const handleFormSubmit = (movieData) => {
     console.log(movieData);
     toggleDialog();
-};
+  };
 
-const handleDeleteMovie = () => {
-  toggleDeleteDialog();
-};
+  const handleDeleteMovie = () => {
+    toggleDeleteDialog();
+  };
 
   const handleSearch = (param) => {
     setSearchQuery(param);
@@ -81,10 +88,11 @@ const handleDeleteMovie = () => {
   const handleMovieEditClick = (param) => {
     setMovieToEdit(mockedMoviesList.find((movie) => movie.id === param));
     setOpen(true);
-  }; 
-  const handleMovieDeleteClick = () => {
+  };
+  const handleMovieDeleteClick = (param) => {
+    setMovieToDelete(mockedMoviesList.find((movie) => movie.id === param));
     setIsDeleteOpen(true);
-  };   
+  };
 
   const handleSortChange = (value) => {
     setSortOption(value);
@@ -105,7 +113,10 @@ const handleDeleteMovie = () => {
           <button onClick={toggleDialog}>{AddMovieButtonText}</button>
           {isOpen && (
             <Dialog title={AddMovieText} onClose={toggleDialog}>
-              <MovieForm onSubmit={handleFormSubmit} initialMovie={movieToEdit}/>
+              <MovieForm
+                onSubmit={handleFormSubmit}
+                initialMovie={movieToEdit}
+              />
             </Dialog>
           )}
         </div>
@@ -113,7 +124,10 @@ const handleDeleteMovie = () => {
         <div>
           {isDeleteOpen && (
             <Dialog title={"DELETE MOVIE"} onClose={toggleDeleteDialog}>
-              <DeleteMovie deleteMovieCLick={handleDeleteMovie}/>
+              <DeleteMovie
+                deleteMovieCLick={handleDeleteMovie}
+                movie={movieToDelete}
+              />
             </Dialog>
           )}
         </div>
@@ -144,7 +158,7 @@ const handleDeleteMovie = () => {
         <div className="App-movie-tiles">
           {orderedMovies.map((movie, index) => (
             <MovieTile
-            id={movie.id}
+              id={movie.id}
               imageUrl={movie.poster_path}
               key={index}
               name={movie.title}
@@ -152,7 +166,7 @@ const handleDeleteMovie = () => {
               genres={movie.genres}
               onClick={() => handleMovieClick(movie.id)}
               onEditClick={() => handleMovieEditClick(movie.id)}
-              onDeleteClick={() => handleMovieDeleteClick()}
+              onDeleteClick={() => handleMovieDeleteClick(movie.id)}
             />
           ))}
         </div>
