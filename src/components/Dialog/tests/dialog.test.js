@@ -8,9 +8,11 @@ describe("Dialog Component Tests", () => {
   beforeEach(() => {
     render(
       <Dialog title="Test Dialog" onClose={mockOnClose}>
-        <>
-          <p>Test Content</p>
-        </>
+        <div >
+          <p >Test Content</p>
+          <input  title="First" type="text"></input>
+          <input title="Second" type="number"></input>
+        </div>
       </Dialog>
     );
   });
