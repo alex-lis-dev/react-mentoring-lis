@@ -20,6 +20,7 @@ function App() {
   const [sortOption, setSortOption] = useState(sortOptions[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [movieToEdit, setMovieToEdit] = useState();
+  const [movieToDelete, setMovieToDelete] = useState();
 
   const [orderedMovies, setOrderedMovies] = useState(
     mockedMoviesList.sort((a, b) =>
@@ -30,8 +31,14 @@ function App() {
   const [isOpen, setOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
-  const toggleDialog = () => setOpen(!isOpen);
-  const toggleDeleteDialog = () => setIsDeleteOpen(!isDeleteOpen);
+  const toggleDialog = () => {
+    if (isOpen) setMovieToEdit();
+    setOpen(!isOpen);
+  };
+  const toggleDeleteDialog = () => {
+    if (isDeleteOpen) setMovieToDelete();
+    setIsDeleteOpen(!isDeleteOpen);
+  };
   const handleFormSubmit = (movieData) => {
     console.log(movieData);
     toggleDialog();
@@ -82,7 +89,8 @@ function App() {
     setMovieToEdit(mockedMoviesList.find((movie) => movie.id === param));
     setOpen(true);
   };
-  const handleMovieDeleteClick = () => {
+  const handleMovieDeleteClick = (param) => {
+    setMovieToDelete(mockedMoviesList.find((movie) => movie.id === param));
     setIsDeleteOpen(true);
   };
 
@@ -116,7 +124,10 @@ function App() {
         <div>
           {isDeleteOpen && (
             <Dialog title={"DELETE MOVIE"} onClose={toggleDeleteDialog}>
-              <DeleteMovie deleteMovieCLick={handleDeleteMovie} />
+              <DeleteMovie
+                deleteMovieCLick={handleDeleteMovie}
+                movie={movieToDelete}
+              />
             </Dialog>
           )}
         </div>
@@ -155,7 +166,7 @@ function App() {
               genres={movie.genres}
               onClick={() => handleMovieClick(movie.id)}
               onEditClick={() => handleMovieEditClick(movie.id)}
-              onDeleteClick={() => handleMovieDeleteClick()}
+              onDeleteClick={() => handleMovieDeleteClick(movie.id)}
             />
           ))}
         </div>
