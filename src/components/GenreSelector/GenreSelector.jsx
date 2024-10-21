@@ -1,32 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import "./GenreSelector.css";
 
-const GenreSelector = ({
-  genres = [
-    "All",
-    "Action",
-    "Mystery",
-    "Science Fiction",
-    "Thriller",
-    "Adventure",
-    "Fantasy",
-  ],
-  selectedGenre = "All",
-  onSelect,
-}) => {
+const GenreSelector = ({ genres, selectedGenre = "All", onSelect }) => {
+  const [currentGenre, setCurrentGenre] = useState(selectedGenre);
+  const handleGenreClick = (genre) => {
+    setCurrentGenre(genre);
+    onSelect(genre);
+  };
   return (
-    <div>
+    <div className="genre-selector-container">
       {genres.map((genre, index) => (
         <button
           key={index}
           style={{
-            margin: "1px",
-            backgroundColor: genre === selectedGenre ? "#F65261" : "#424242",
+            backgroundColor: "#232323",
             color: "#FFFFFF",
+            "border-bottom":
+              "3px solid " + (genre === currentGenre ? "#F65261" : "#424242"),
           }}
-          onClick={() => onSelect(genre)}
+          onClick={() => handleGenreClick(genre)}
         >
-          {genre}
+          {genre.toUpperCase()}
         </button>
       ))}
     </div>

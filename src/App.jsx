@@ -10,18 +10,36 @@ import SortControl from "./components/SortControl/SortControl";
 import dateComparer from "./helpers/dateComparer";
 import titleComparer from "./helpers/titleComparer";
 import sortOptions from "./helpers/sortOptions";
-
+import Dialog from "./components/Dialog/Dialog";
+import { AddMovieButtonText, AddMovieText } from "./helpers/constants";
+import MovieForm from "./components/MovieForm/MovieForm.jsx";
+import DeleteMovie from "./components/MovieForm/components/DeleteMovie/DeleteMovie";
 function App() {
   const [selectedMovie, setSelectedMovie] = useState();
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [sortOption, setSortOption] = useState(sortOptions[0]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [movieToEdit, setMovieToEdit] = useState();
 
   const [orderedMovies, setOrderedMovies] = useState(
     mockedMoviesList.sort((a, b) =>
       sortOption === sortOptions[0] ? dateComparer(a, b) : titleComparer(a, b)
     )
   );
+
+  const [isOpen, setOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  
+  const toggleDialog = () => setOpen(!isOpen);
+  const toggleDeleteDialog = () => setIsDeleteOpen(!isDeleteOpen);
+  const handleFormSubmit = (movieData) => {
+    console.log(movieData);
+    toggleDialog();
+};
+
+const handleDeleteMovie = () => {
+  toggleDeleteDialog();
+};
 
   const handleSearch = (param) => {
     setSearchQuery(param);
@@ -60,6 +78,14 @@ function App() {
     setSelectedMovie(mockedMoviesList.find((movie) => movie.id === param));
   };
 
+  const handleMovieEditClick = (param) => {
+    setMovieToEdit(mockedMoviesList.find((movie) => movie.id === param));
+    setOpen(true);
+  }; 
+  const handleMovieDeleteClick = () => {
+    setIsDeleteOpen(true);
+  };   
+
   const handleSortChange = (value) => {
     setSortOption(value);
   };
@@ -75,6 +101,22 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Counter initialValue={13}></Counter>
+        <div>
+          <button onClick={toggleDialog}>{AddMovieButtonText}</button>
+          {isOpen && (
+            <Dialog title={AddMovieText} onClose={toggleDialog}>
+              <MovieForm onSubmit={handleFormSubmit} initialMovie={movieToEdit}/>
+            </Dialog>
+          )}
+        </div>
+
+        <div>
+          {isDeleteOpen && (
+            <Dialog title={"DELETE MOVIE"} onClose={toggleDeleteDialog}>
+              <DeleteMovie deleteMovieCLick={handleDeleteMovie}/>
+            </Dialog>
+          )}
+        </div>
         <Search
           placeholder={"What do you want?"}
           initialQuery={searchQuery}
@@ -102,12 +144,15 @@ function App() {
         <div className="App-movie-tiles">
           {orderedMovies.map((movie, index) => (
             <MovieTile
+            id={movie.id}
               imageUrl={movie.poster_path}
               key={index}
               name={movie.title}
               releaseDate={movie.release_date}
               genres={movie.genres}
               onClick={() => handleMovieClick(movie.id)}
+              onEditClick={() => handleMovieEditClick(movie.id)}
+              onDeleteClick={() => handleMovieDeleteClick()}
             />
           ))}
         </div>

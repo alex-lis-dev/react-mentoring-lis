@@ -1,0 +1,17 @@
+.movie-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .form-field {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .movie-form input,
+  .movie-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
