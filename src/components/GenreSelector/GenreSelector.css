@@ -14,4 +14,11 @@
     font-size: 16px;
     display: inline-block;
     text-align: center;
+    background-color: #232323;
+    color: #FFFFFF;
+    border-bottom: 3px solid #424242;
+}
+
+.genre-selector-container button.active {
+  border-bottom-color: #F65261;
 }
