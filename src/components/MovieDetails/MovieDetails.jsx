@@ -2,9 +2,12 @@ import React from "react";
 import "./MovieDetails.css";
 import PropTypes from "prop-types";
 
-const MovieDetails = ({ movie = null }) => {
+const MovieDetails = ({ movie = null, handleSearchIconClick = () => {} }) => {
   return (
     <div className="movie-details">
+      <button className="searchButton" onClick={handleSearchIconClick}>
+        Search
+      </button>
       <img src={movie.poster_path} alt={movie.title} className="movie-poster" />
       <div className="movie-info">
         <h2>{movie.title}</h2>
@@ -28,4 +31,5 @@ MovieDetails.propTypes = {
     runtime: PropTypes.number.isRequired,
     overview: PropTypes.string.isRequired,
   }),
+  handleSearchIconClick: PropTypes.func.isRequired,
 };

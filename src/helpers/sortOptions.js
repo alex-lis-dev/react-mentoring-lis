@@ -1,5 +1,5 @@
 const sortOptions = [
-    "releaseDate",
+    "release_date",
     "title"
 ]
 

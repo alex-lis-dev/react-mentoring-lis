@@ -20,3 +20,6 @@ export const MovieForm_Overview_Placeholder = "Movie description";
 export const DeleteMovieConfirmationQuestion =
   "Are you sure you want to delete this movie?";
 export const DeleteMovieConfirm = "CONFIRM";
+export const SearchForm_Placeholder = "What do you want to watch?";
+export const MovieForm_Button_RESET = "RESET";
+export const MovieForm_Button_SUBMIT = "SUBMIT";

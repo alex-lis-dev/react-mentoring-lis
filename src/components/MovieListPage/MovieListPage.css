@@ -1,0 +1,99 @@
+.App-header {
+    background-color: #232323;
+    width: 1200px;
+    height: 396px;
+    top: 54px;
+    left: 58px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+  .App-body {
+    width: 1200px;
+    background-color: #232323;
+    position: relative;
+  }
+  
+  .App-footer{
+    background-color: #424242;
+    width: 1200px;
+    height: 70px;
+    top: 1771px;
+    left: 58px;
+    gap: 0px;
+    opacity: 0px;  
+  }
+  
+  .App-movie-tiles {
+    display: flex;
+    margin-left: 40px;
+    margin-top: 100px;
+    position: relative;
+  }
+  
+  .search-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://s3-alpha-sig.figma.com/img/9ab1/b611/92a81bbe79a924292111ca43f3a39e8f?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=noXbQ~iaCuYPkcYdiT3A19bd~XpmS7lRSoTcHBmiSkegteEULSC00Du4EhN9oKvV4Dovbx50zzvM6ANyYqESQuM8Nqg4WEoNkn1GgNB~MHvokRJUWV9cLz8WUWmjwuprp2BmSm82OUq1e2RTSk0H2rWf2gTkGzCN4enHjNCwWooBhP5mn85oq9gB3m3ft6GSBYYBIg1zmjkf3JXU7H9zkR70km06FzPYRHdiB485lalfi3cJLneg8X1etHMAHkQsmba3~0oJtVOmEqeCgF8j~VGQ9fMjpWEgRhTjtucz7DGXcQH3YvuGhZexoGdZulYCu1UtxQR9he10zYyhtzpmRA__");
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-position: -10px -100px;
+    background-repeat: no-repeat;
+  }
+  
+  .blur-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(8.15px);
+    background-color: rgb(0,0,0,0.7);
+  }
+  
+  .content {
+    position: relative;
+    text-align: center;
+    color: #000;
+    font-size: 24px;
+  
+    width:100%;
+    height: 100%;
+  }
+  
+  .add-movie-button {
+    all: unset;
+    position: absolute;
+    color: #f65261;
+    background: #606060;
+    opacity: 0.68;
+    font-size: 20px;
+    top: 30px;
+    right: 30px;
+    padding: 5px;
+    border: 0px solid white;
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: 600;
+  }
+  
+  .netflix {
+    color: #f65261;
+    font-size: 20px;
+  }
+  
+  .total-count{
+    color: #ffffff;
+    position: absolute;
+    font-size: 20px;
+    top: 50px;
+    left: 40px;
+  
+  }
+  

@@ -1,7 +1,9 @@
 .sort-control {
   display: flex;
   justify-content: flex-end;
-    
+  position: absolute;
+  top: 10px;
+  right: 10px;    
   }
   
   .sort-control label {
@@ -21,7 +23,8 @@
     background-color: transparent;
   }
 
-  .sort-select option{
+  .sort-option{
+    all:unset;
     background-color: #232323;
     padding: 5px;
   }

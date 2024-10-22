@@ -10,15 +10,10 @@ const GenreSelector = ({ genres, selectedGenre = "All", onSelect }) => {
   };
   return (
     <div className="genre-selector-container">
-      {genres.map((genre, index) => (
+      {genres.map((genre) => (
         <button
-          key={index}
-          style={{
-            backgroundColor: "#232323",
-            color: "#FFFFFF",
-            borderBottom:
-              "3px solid " + (genre === currentGenre ? "#F65261" : "#424242"),
-          }}
+          key={genre}
+          className={genre === currentGenre ? "active" : ""}
           onClick={() => handleGenreClick(genre)}
         >
           {genre.toUpperCase()}
@@ -28,10 +23,10 @@ const GenreSelector = ({ genres, selectedGenre = "All", onSelect }) => {
   );
 };
 
-export default GenreSelector;
-
 GenreSelector.propTypes = {
-  genres: PropTypes.array,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedGenre: PropTypes.string,
-  onSelect: PropTypes.func,
+  onSelect: PropTypes.func.isRequired,
 };
+
+export default GenreSelector;
