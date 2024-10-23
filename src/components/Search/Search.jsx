@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Search.css"
+import "./Search.css";
+import { SearchForm_Button_Search } from "../../helpers/constants";
 
 const Search = ({ initialQuery = null, placeholder, onSearch }) => {
   //const [query, setQuery] = useState(initialQuery);
@@ -24,7 +25,7 @@ const Search = ({ initialQuery = null, placeholder, onSearch }) => {
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      <button type="submit">SEARCH</button>
+      <button type="submit">{SearchForm_Button_Search}</button>
     </form>
   );
 };

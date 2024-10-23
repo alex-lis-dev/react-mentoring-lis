@@ -23,8 +23,8 @@ describe('SortControl Component', () => {
   it('calls onSortChange when selection is changed', async () => {
     render(<SortControl {...props} />);
     const selectElement = screen.getByRole('combobox');
-    await userEvent.selectOptions(selectElement, 'releaseDate');
-    expect(mockOnSortChange).toHaveBeenCalledWith('releaseDate');
+    await userEvent.selectOptions(selectElement, 'release_date');
+    expect(mockOnSortChange).toHaveBeenCalledWith('release_date');
     await userEvent.selectOptions(selectElement, 'title');
     expect(mockOnSortChange).toHaveBeenCalledWith('title');
   });

@@ -2,7 +2,7 @@ import { PropTypes } from "prop-types";
 import React, { useState } from "react";
 import {
   MovieForm_Button_RESET,
-  MovieForm_Button_SUBMIT,
+  MovieForm_Button_Submit,
   MovieForm_Genre,
   MovieForm_Genre_Placeholder,
   MovieForm_MovieUrl,
@@ -132,7 +132,7 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
           {MovieForm_Button_RESET}
         </button>
         <button className="movie-form-buttons-submit" type="submit">
-          {MovieForm_Button_SUBMIT}
+          {MovieForm_Button_Submit}
         </button>
       </div>
     </form>
