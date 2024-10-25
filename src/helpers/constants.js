@@ -24,3 +24,4 @@ export const SearchForm_Placeholder = "What do you want to watch?";
 export const MovieForm_Button_RESET = "RESET";
 export const MovieForm_Button_Submit = "SUBMIT";
 export const SearchForm_Button_Search = "SEARCH";
+export const DeleteMovie_Title = "DELETE MOVIE";
