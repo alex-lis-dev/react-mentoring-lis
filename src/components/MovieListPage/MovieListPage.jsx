@@ -25,7 +25,7 @@ const MovieListPage = () => {
     //   orderedMovies.reduce((acc, movie) => acc.concat(movie.genres), [])
     // ),
   ];
-  
+
   const [orderedMovies, setOrderedMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState();
   const [selectedGenre, setSelectedGenre] = useState(genres[0]);
@@ -41,11 +41,23 @@ const MovieListPage = () => {
     setSelectedMovie(orderedMovies.find((movie) => movie.id === id));
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     getMovies(
       sortOption,
       searchQuery,
-      selectedGenre === "All" ? "" : selectedGenre
-    ).then((response) => setOrderedMovies(response.data));
+      selectedGenre === "All" ? "" : selectedGenre,
+      signal
+    )
+      .then((response) => setOrderedMovies(response.data))
+      .catch((error) => {
+        if (error.name !== "AbortError") {
+          console.error("Fetch error:", error.message);
+        }
+      });
+
+    return () => controller.abort();
   }, [searchQuery, selectedGenre, sortOption]);
 
   return (
@@ -59,7 +71,10 @@ const MovieListPage = () => {
                 <button className="add-movie-button" onClick={toggleDialog}>
                   {AddMovieButtonText}
                 </button>
-                <AddAndEditMovieDialog isOpen={isAddMovieDialogOpen} onClose={toggleDialog} />
+                <AddAndEditMovieDialog
+                  isOpen={isAddMovieDialogOpen}
+                  onClose={toggleDialog}
+                />
               </div>
               <Search
                 placeholder={SearchForm_Placeholder}
@@ -103,7 +118,7 @@ const MovieListPage = () => {
           ))}
         </div>
       </div>
-      
+
       <footer className="App-footer">
         <div className="netflix">
           <strong>netflix</strong>roulette

@@ -10,7 +10,10 @@ describe("MovieTile Component", () => {
       poster_path: "http://example.com/image.jpg",
       title: "Vertigo",
       release_date: "2021-07-20",
+      vote_average: 9,
+      runtime: 130,
       genres: ["Action", "Comedy"],
+      overview: "Long description"
     },
     onClick: mockOnClick,
   };

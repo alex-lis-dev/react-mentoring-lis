@@ -33,6 +33,6 @@ FormField.propTypes = {
   type: PropTypes.string.isRequired,
   labelTitle: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  initialValue: PropTypes.string.isRequired,
+  initialValue: PropTypes.any.isRequired,
   onChange: PropTypes.func.isRequired
 };

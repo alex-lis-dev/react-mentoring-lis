@@ -20,6 +20,7 @@ const Search = ({ initialQuery = null, placeholder, onSearch }) => {
     <form onSubmit={handleSubmit} className="search-form">
       <div>{"FIND YOUR MOVIE"}</div>
       <input
+        data-testid="search-input"
         type="text"
         value={initialQuery}
         onChange={handleInputChange}
