@@ -34,9 +34,9 @@ DeleteMovieDialog.propTypes = {
     poster_path: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
-    vote_average: PropTypes.number.isRequired,
-    runtime: PropTypes.number.isRequired,
-    overview: PropTypes.string.isRequired,
+    vote_average: PropTypes.number,
+    runtime: PropTypes.number,
+    overview: PropTypes.string,
     genres: PropTypes.array.isRequired,
   }),
 };

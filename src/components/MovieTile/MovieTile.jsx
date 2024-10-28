@@ -53,9 +53,9 @@ MovieTile.propTypes = {
     poster_path: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
-    vote_average: PropTypes.number.isRequired,
+    vote_average: PropTypes.number,
     runtime: PropTypes.number,
-    overview: PropTypes.string.isRequired,
+    overview: PropTypes.string,
     genres: PropTypes.array.isRequired,
   })
 };
