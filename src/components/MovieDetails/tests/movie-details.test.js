@@ -1,7 +1,8 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import { render, waitFor, screen } from "@testing-library/react";
 import MovieDetails from "../MovieDetails";
+import * as router from "react-router";
+import * as services from "../../../services";
 
 describe("MovieDetails Component", () => {
   const mockMovie = {
@@ -13,44 +14,49 @@ describe("MovieDetails Component", () => {
     overview:
       "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
   };
+  // Setting up mocks
+  const useParams = jest.spyOn(router, "useParams");
+  const useNavigate = jest.spyOn(router, "useNavigate");
+  const useLocation = jest.spyOn(router, "useLocation");
+  const getMovieMock = jest.spyOn(services, "getMovie");
 
-  const mockOnSearchClick = jest.fn();
-
-  it("renders correctly when movie prop is provided", () => {
-    render(
-      <MovieDetails
-        movie={mockMovie}
-        handleSearchIconClick={mockOnSearchClick}
-      />
-    );
-
-    expect(screen.getByRole("img")).toHaveAttribute(
-      "src",
-      mockMovie.poster_path
-    );
-    expect(screen.getByRole("img")).toHaveAttribute("alt", mockMovie.title);
-    expect(screen.getByText(mockMovie.title)).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        new Date(mockMovie.release_date).getFullYear().toString()
-      )
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(mockMovie.vote_average.toString())
-    ).toBeInTheDocument();
-    expect(screen.getByText(`${mockMovie.runtime}`)).toBeInTheDocument();
-    expect(screen.getByText(mockMovie.overview)).toBeInTheDocument();
+  beforeEach(() => {
+    useParams.mockReturnValue({ movieId: "123" });
+    useNavigate.mockReturnValue(jest.fn());
+    useLocation.mockReturnValue({ search: "?query=test" });
+    getMovieMock.mockResolvedValue(mockMovie);
   });
 
-  it("calls handleSearchIconClick when the search button is clicked", () => {
-    render(
-      <MovieDetails
-        movie={mockMovie}
-        onSearchClick={mockOnSearchClick}
-      />
-    );
-    const button = screen.getByRole("button", { name: "Search" });
-    fireEvent.click(button);
-    expect(mockOnSearchClick).toHaveBeenCalledTimes(1);
-  });  
+  it("renders the loading state initially", () => {
+    render(<MovieDetails />);
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
+  });
+
+  it("renders movie details after fetching the data", async () => {
+    render(<MovieDetails />);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(mockMovie.vote_average.toString())
+      ).toBeInTheDocument();
+      expect(screen.getByAltText(`${mockMovie.title}`)).toBeInTheDocument();
+      expect(screen.getByText(`${mockMovie.runtime}`)).toBeInTheDocument();
+      expect(screen.getByText(mockMovie.overview)).toBeInTheDocument();
+    });
+  });
+
+  it("navigates back to search on button click", async () => {
+    const navigateMock = jest.fn();
+    useNavigate.mockImplementation(() => navigateMock);
+
+    render(<MovieDetails />);
+    const searchButton = await waitFor(() => screen.getByText("Search"));
+    searchButton.click();
+
+    expect(navigateMock).toHaveBeenCalledWith("/?query=test");
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
 });

@@ -5,9 +5,24 @@ export const getMovies = async (sortBy, searchQuery, genre, signal) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      //"Cache-Control": "no-cache",
     },
-    signal
+    signal,
+  });
+
+  if (!response.ok) {
+    throw new Error("Network Error");
+  }
+  return await response.json();
+};
+
+export const getMovie = async (id) => {
+  const url = `http://localhost:4000/movies/${id}`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   if (!response.ok) {

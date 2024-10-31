@@ -15,8 +15,8 @@ const SortControl = ({ currentSelection = sortOptions[0], onSortChange }) => {
 
   return (
     <div className="sort-control">
-      <label>{SortByText}</label>
-      <select className="sort-select" value={currentSelection} onChange={handleChange}>
+      <label htmlFor="sort-select">{SortByText}</label>
+      <select id="sort-select" className="sort-select" value={currentSelection} onChange={handleChange}>
         <option className="sort-option" value={sortOptions[0]}>{ReleaseDateText}</option>
         <option className="sort-option" value={sortOptions[1]}>{TitleText}</option>
       </select>

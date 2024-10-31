@@ -1,29 +1,89 @@
-
-import React
- from 'react'; import { render, fireEvent, waitFor } from '@testing-library/react';
-import MovieListPage from '../MovieListPage';
-import { enableFetchMocks } from 'jest-fetch-mock';
+import React from "react";
+import { render, fireEvent, waitFor, cleanup } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import MovieListPage from "../MovieListPage";
+import { enableFetchMocks } from "jest-fetch-mock";
+import { SortByText, TitleText } from "../../../helpers/constants";
+import sortOptions from "../../../helpers/sortOptions";
 
 enableFetchMocks();
 
 beforeEach(() => {
+  cleanup();
   fetch.resetMocks();
 });
 
-test('aborts fetching movies when inputs change rapidly', async () => {
-  fetch.mockResponseOnce(JSON.stringify({ data: [] })); // Simulate initial load response
-  fetch.mockResponseOnce(JSON.stringify({ data: [] })); // Response for first input change
-  fetch.mockResponseOnce(JSON.stringify({ data: [] })); // Response for second input change
+const mockMovies = [
+  { id: 1, title: "Movie A", genres: ["Action"], rating: 8 },
+  { id: 2, title: "Movie B", genres: ["Comedy", "Adventure"], rating: 5 },
+];
 
-  const { getByTestId } = render(<MovieListPage />);
-  const searchInput = getByTestId('search-input');
+fetch.mockResponseOnce(JSON.stringify({ data: mockMovies }));
 
-  // Initial load
+function setup(initialRoute = "/") {
+  return render(
+    <MemoryRouter initialEntries={[initialRoute]}>
+      <MovieListPage />
+    </MemoryRouter>
+  );
+}
+
+test("fetches movies on initial load", async () => {
+  setup("/?genre=All&sortBy=title");
+
   await waitFor(() => expect(fetch).toHaveBeenCalledTimes(1));
+  expect(fetch).toHaveBeenCalledWith(
+    expect.stringContaining("sortBy=title"),
+    expect.anything()
+  );
+});
 
-  // Rapidly change search query
-  fireEvent.change(searchInput, { target: { value: 'Action' } });
-  fireEvent.change(searchInput, { target: { value: 'Drama' } });
+test("changes movies based on genre selection", async () => {
+  const { getByText } = setup();
+
+  fireEvent.click(getByText("COMEDY"));
+
+  await waitFor(() => {
+    expect(fetch).toHaveBeenCalledTimes(2);
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringContaining("filter=Comedy"),
+      expect.anything()
+    );
+  });
+});
+
+test("changes movies based on sort option", async () => {
+  const { getByLabelText, getByText } = setup();
+
+  const sortSelect = getByLabelText(SortByText);
+  fireEvent.change(sortSelect, { target: { value: sortOptions[1] } });
+
+  await waitFor(() => {
+    expect(fetch).toHaveBeenCalledTimes(2);
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringContaining("sortBy=title"),
+      expect.anything()
+    );
+  });
+  expect(getByText(TitleText).parentNode.value).toBe("title");
+});
+
+test("updates movie list when navigation occurs", async () => {
+  const { getByText } = setup("/?sortBy=release_date");
+
+  fireEvent.click(getByText("ACTION"));
+
+  expect(fetch).toHaveBeenCalledWith(
+    expect.stringContaining("filter=Action"),
+    expect.anything()
+  );
+});
+
+test("aborts pending fetches when new fetch is initiated", async () => {
+  const { getByText } = setup();
+
+  fireEvent.click(getByText("HORROR"));
+  fireEvent.click(getByText("COMEDY"));
 
   await waitFor(() => {
     expect(fetch).toHaveBeenCalledTimes(3);
