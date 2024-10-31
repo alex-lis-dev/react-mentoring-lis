@@ -9,19 +9,16 @@ import {
 
 const DeleteMovieDialog = ({ isOpen, onClose, movieToDelete }) => {
   const handleDeleteMovie = () => {
-    console.log(movieToDelete.title);
     onClose();
   };
 
   return (
-    isOpen && (
-      <Dialog title={DeleteMovie_Title} onClose={onClose}>
-        <div>
-          {DeleteMovieConfirmationQuestion}
-          <button onClick={handleDeleteMovie}>{DeleteMovieConfirm}</button>
-        </div>
-      </Dialog>
-    )
+    <Dialog title={DeleteMovie_Title} onClose={onClose} active={isOpen}>
+      <div>
+        {DeleteMovieConfirmationQuestion}
+        <button onClick={handleDeleteMovie}>{DeleteMovieConfirm}</button>
+      </div>
+    </Dialog>
   );
 };
 export default DeleteMovieDialog;

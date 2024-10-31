@@ -14,13 +14,13 @@ describe("MovieDetails Component", () => {
       "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
   };
 
-  const mockHandleSearchIconClick = jest.fn();
+  const mockOnSearchClick = jest.fn();
 
   it("renders correctly when movie prop is provided", () => {
     render(
       <MovieDetails
         movie={mockMovie}
-        handleSearchIconClick={mockHandleSearchIconClick}
+        handleSearchIconClick={mockOnSearchClick}
       />
     );
 
@@ -46,11 +46,11 @@ describe("MovieDetails Component", () => {
     render(
       <MovieDetails
         movie={mockMovie}
-        handleSearchIconClick={mockHandleSearchIconClick}
+        onSearchClick={mockOnSearchClick}
       />
     );
     const button = screen.getByRole("button", { name: "Search" });
     fireEvent.click(button);
-    expect(mockHandleSearchIconClick).toHaveBeenCalledTimes(1);
+    expect(mockOnSearchClick).toHaveBeenCalledTimes(1);
   });  
 });

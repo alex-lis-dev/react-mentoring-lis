@@ -52,10 +52,6 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //const formData = new FormData(event.target);
-    //const movieData = Object.fromEntries(formData);
-    //console.log(movieData);
-    //onSubmit(movieData);
     onSubmit(formData);
   };
 

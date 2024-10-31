@@ -15,19 +15,10 @@ import { getMovies } from "../../services.js";
 import AddAndEditMovieDialog from "../MovieForm/components/AddAndEditMovieDialog/AddAndEditMovieDialog.jsx";
 
 const MovieListPage = () => {
-  const genres = [
-    "All",
-    "Documentary",
-    "Horror",
-    "War",
-    "MUSIC",
-    // ...new Set(
-    //   orderedMovies.reduce((acc, movie) => acc.concat(movie.genres), [])
-    // ),
-  ];
+  const genres = ["All", "Documentary", "Horror", "War", "MUSIC"];
 
   const [orderedMovies, setOrderedMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState();
+  const [selectedMovie, setSelectedMovie] = useState(null);
   const [selectedGenre, setSelectedGenre] = useState(genres[0]);
   const [sortOption, setSortOption] = useState(sortOptions[0]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -87,7 +78,7 @@ const MovieListPage = () => {
           <div className="movie-details-container">
             <MovieDetails
               movie={selectedMovie}
-              handleSearchIconClick={() => setSelectedMovie()}
+              onSearchClick={() => setSelectedMovie()}
             />
           </div>
         )}

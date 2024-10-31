@@ -5,32 +5,30 @@ import { AddMovieText } from "../../../../helpers/constants";
 import PropTypes from "prop-types";
 
 const AddAndEditMovieDialog = ({ isOpen, onClose, movieToEdit }) => {
-  const handleFormSubmit = (movieData) => {
-    console.log(movieData);
+  
+  const handleFormSubmit = () => {
     onClose();
   };
 
   return (
-    isOpen && (
-      <Dialog title={AddMovieText} onClose={onClose}>
-        <MovieForm onSubmit={handleFormSubmit} initialMovie={movieToEdit} />
-      </Dialog>
-    )
+    <Dialog title={AddMovieText} onClose={onClose} active={isOpen}>
+      <MovieForm onSubmit={handleFormSubmit} initialMovie={movieToEdit} />
+    </Dialog>
   );
 };
 
 export default AddAndEditMovieDialog;
 
 AddAndEditMovieDialog.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    movieToEdit: PropTypes.shape({
-        poster_path: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        release_date: PropTypes.string.isRequired,
-        vote_average: PropTypes.number,
-        runtime: PropTypes.number,
-        overview: PropTypes.string,
-        genres: PropTypes.array.isRequired,
-      })
-}
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  movieToEdit: PropTypes.shape({
+    poster_path: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    vote_average: PropTypes.number,
+    runtime: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.array.isRequired,
+  }),
+};
