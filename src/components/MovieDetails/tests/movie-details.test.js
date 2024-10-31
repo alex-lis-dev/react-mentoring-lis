@@ -1,7 +1,7 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import MovieDetails from "../MovieDetails"; // Adjust the import path as necessary
+import MovieDetails from "../MovieDetails";
 
 describe("MovieDetails Component", () => {
   const mockMovie = {
@@ -14,8 +14,15 @@ describe("MovieDetails Component", () => {
       "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
   };
 
+  const mockOnSearchClick = jest.fn();
+
   it("renders correctly when movie prop is provided", () => {
-    render(<MovieDetails movie={mockMovie} />);
+    render(
+      <MovieDetails
+        movie={mockMovie}
+        handleSearchIconClick={mockOnSearchClick}
+      />
+    );
 
     expect(screen.getByRole("img")).toHaveAttribute(
       "src",
@@ -31,13 +38,19 @@ describe("MovieDetails Component", () => {
     expect(
       screen.getByText(mockMovie.vote_average.toString())
     ).toBeInTheDocument();
-    expect(screen.getByText(`${mockMovie.runtime}`)).toBeInTheDocument(); // Assuming the runtime is displayed in minutes
+    expect(screen.getByText(`${mockMovie.runtime}`)).toBeInTheDocument();
     expect(screen.getByText(mockMovie.overview)).toBeInTheDocument();
   });
 
-  //obsolete since the check is moved to App component
-  // it('does not render anything when movie prop is not provided', () => {
-  //   const { container } = render(<MovieDetails />);
-  //   expect(container.firstChild).toBeNull();
-  // });
+  it("calls handleSearchIconClick when the search button is clicked", () => {
+    render(
+      <MovieDetails
+        movie={mockMovie}
+        onSearchClick={mockOnSearchClick}
+      />
+    );
+    const button = screen.getByRole("button", { name: "Search" });
+    fireEvent.click(button);
+    expect(mockOnSearchClick).toHaveBeenCalledTimes(1);
+  });  
 });

@@ -1,18 +1,35 @@
 .movie-details {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
   
-  .movie-poster {
-    width: 200px;
-    height: 300px;
-    margin-right: 20px;
-  }
-  
-  .movie-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+position: relative;
+}
+
+.movie-poster {
+  width: 200px;
+  height: 300px;
+  margin-right: 20px;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.searchButton {
+  all: unset;
+  position: absolute;
+  display: flex;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background-color: #232323;
+  color: #F65261;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}

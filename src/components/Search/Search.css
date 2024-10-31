@@ -1,0 +1,35 @@
+.search-form button {
+    all: unset;
+    background-color: #f65261;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 0px 50px;
+    height: 57px;
+    margin-left: 10px;
+  }
+  
+  .search-form input {
+    all: unset;
+    background: rgba(30, 30, 30, 0.8);
+    color: #ffffff;
+    width: 713px;
+    height: 57px;
+    border-radius: 5px;
+    text-align: left;
+    padding-left: 20px;
+  }
+  
+  .search-form {
+      position: absolute;
+      top: 40%;
+      left: 10%;
+  }
+  
+  .search-form div {
+    font-size: 40px;
+    color: #ffffff;
+    font-weight: 1;
+    height: 57px;
+    text-align: left;
+  }
+  

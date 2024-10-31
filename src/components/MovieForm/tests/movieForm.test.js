@@ -56,9 +56,9 @@ describe("MovieForm Component", () => {
       title: dummyMovie.title,
       releaseDate: dummyMovie.release_date,
       movieUrl: dummyMovie.poster_path,
-      rating: String(dummyMovie.vote_average),
-      genre: dummyMovie.genres.join(", "),
-      runtime: String(dummyMovie.runtime),
+      rating: dummyMovie.vote_average,
+      genres: dummyMovie.genres.join(", "),
+      runtime: dummyMovie.runtime,
       overview: dummyMovie.overview,
     });
   });

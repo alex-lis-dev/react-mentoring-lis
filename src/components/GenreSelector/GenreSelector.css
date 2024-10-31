@@ -1,14 +1,24 @@
 .genre-selector-container{    
   display: flex;
   justify-content: flex-start;
+  position: absolute;
+  top: 10px;
+  left: 40px;
 }
 
 .genre-selector-container button{
     all: unset;
     background: none;
-    padding: 5px 10px;
+    padding: 0px 7.5px;
     cursor: pointer;
     font-size: 16px;
     display: inline-block;
     text-align: center;
+    background-color: #232323;
+    color: #FFFFFF;
+    border-bottom: 3px solid #424242;
+}
+
+.genre-selector-container button.active {
+  border-bottom-color: #F65261;
 }

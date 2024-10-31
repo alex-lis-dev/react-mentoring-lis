@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./Search.css";
+import { SearchForm_Button_Search } from "../../helpers/constants";
 
 const Search = ({ initialQuery = null, placeholder, onSearch }) => {
   //const [query, setQuery] = useState(initialQuery);
@@ -15,14 +17,16 @@ const Search = ({ initialQuery = null, placeholder, onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="search-form">
+      <div>{"FIND YOUR MOVIE"}</div>
       <input
+        data-testid="search-input"
         type="text"
         value={initialQuery}
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      <button type="submit">Search</button>
+      <button type="submit">{SearchForm_Button_Search}</button>
     </form>
   );
 };

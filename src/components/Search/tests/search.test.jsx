@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Search from "../Search"
+import { SearchForm_Button_Search } from '../../../helpers/constants';
 
 describe('Search Component', () => {
   it('renders initial value', () => {
@@ -17,7 +18,7 @@ describe('Search Component', () => {
     render(<Search initialQuery={initialValue} onSearch={mockOnChangeEvent} />);
     const input = screen.getByDisplayValue(initialValue);
     fireEvent.change(input, { target: { value: newQuery } });
-    fireEvent.click(screen.getByText('Search'));
+    fireEvent.click(screen.getByText(SearchForm_Button_Search));
     expect(mockOnChangeEvent).toHaveBeenCalledWith(newQuery);
   });
 
