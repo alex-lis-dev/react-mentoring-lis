@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, waitFor, cleanup } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import MovieListPage from "../MovieListPage";
+import Layout from "../../Layout/Layout";
 import { enableFetchMocks } from "jest-fetch-mock";
 import { SortByText, TitleText } from "../../../helpers/constants";
 import sortOptions from "../../../helpers/sortOptions";
@@ -23,7 +23,7 @@ fetch.mockResponseOnce(JSON.stringify({ data: mockMovies }));
 function setup(initialRoute = "/") {
   return render(
     <MemoryRouter initialEntries={[initialRoute]}>
-      <MovieListPage />
+      <Layout />
     </MemoryRouter>
   );
 }

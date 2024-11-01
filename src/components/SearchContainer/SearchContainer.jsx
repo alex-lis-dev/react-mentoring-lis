@@ -6,6 +6,8 @@ import {
 import Search from "../Search/Search";
 import AddAndEditMovieDialog from "../MovieForm/components/AddAndEditMovieDialog/AddAndEditMovieDialog";
 import { useOutletContext } from "react-router-dom";
+import "./SearchContainer.css";
+
 const SearchContainer = () => {
   const { query, handleSearch } = useOutletContext();
   const [isAddMovieDialogOpen, setIsAddMovieDialogOpen] = useState(false);
