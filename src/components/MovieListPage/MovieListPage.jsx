@@ -25,7 +25,7 @@ const MovieListPage = ({
         genres={genres}
         selectedGenre={genre}
         onSelect={handleGenre}
-      ></GenreSelector>
+      />
       <SortControl currentSelection={sortBy} onSortChange={handleSortChange} />
 
       <div className="total-count">

@@ -25,3 +25,4 @@ export const MovieForm_Button_RESET = "RESET";
 export const MovieForm_Button_Submit = "SUBMIT";
 export const SearchForm_Button_Search = "SEARCH";
 export const DeleteMovie_Title = "DELETE MOVIE";
+export const Search_Header_Text = "FIND YOUR MOVIE";

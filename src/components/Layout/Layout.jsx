@@ -34,7 +34,7 @@ const Layout = () => {
       .then((response) => setOrderedMovies(response.data))
       .catch((error) => {
         if (error.name !== "AbortError") {
-          console.error("Fetch error:", error.message);
+          //console.error("Fetch error:", error.message);
         }
       });
 
