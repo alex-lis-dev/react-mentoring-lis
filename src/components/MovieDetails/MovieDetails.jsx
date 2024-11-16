@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./MovieDetails.css";
-import PropTypes from "prop-types";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { getMovie } from "../../services.js";
 
-const MovieDetails = ({ movie, onSearchClick}) => {
-  return (
+const MovieDetails = () => {
+  const { movieId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [movie, setMovie] = useState(null);
+
+  useEffect(() => {
+    getMovie(movieId)
+      .then((data) => setMovie(data))
+      .catch((err) => console.error("Error fetching movie details:", err));
+  }, [movieId]);
+
+  return movie ? (
     <div className="movie-details">
-      <button className="searchButton" onClick={onSearchClick}>
+      <button
+        className="searchButton"
+        onClick={() => navigate(`/${location.search}`)}
+      >
         Search
       </button>
       <img src={movie.poster_path} alt={movie.title} className="movie-poster" />
@@ -17,19 +32,9 @@ const MovieDetails = ({ movie, onSearchClick}) => {
         <p>{movie.overview}</p>
       </div>
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 };
 
 export default MovieDetails;
-
-MovieDetails.propTypes = {
-  movie: PropTypes.shape({
-    poster_path: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    release_date: PropTypes.string.isRequired,
-    vote_average: PropTypes.number,
-    runtime: PropTypes.number,
-    overview: PropTypes.string,
-  }),
-  onSearchClick: PropTypes.func.isRequired,
-};

@@ -1,28 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./Search.css";
-import { SearchForm_Button_Search } from "../../helpers/constants";
+import { Search_Header_Text, SearchForm_Button_Search } from "../../helpers/constants";
 
-const Search = ({ initialQuery = null, placeholder, onSearch }) => {
-  //const [query, setQuery] = useState(initialQuery);
+const Search = ({ initialQuery, placeholder, onSearch }) => {
+  const [query, setQuery] = useState(initialQuery);
 
   const handleInputChange = (e) => {
-    //setQuery(e.target.value);
-    onSearch(e.target.value);
+    setQuery(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(initialQuery);
+    onSearch(query);
   };
 
   return (
     <form onSubmit={handleSubmit} className="search-form">
-      <div>{"FIND YOUR MOVIE"}</div>
+      <div>{Search_Header_Text}</div>
       <input
         data-testid="search-input"
         type="text"
-        value={initialQuery}
+        value={query}
         onChange={handleInputChange}
         placeholder={placeholder}
       />
@@ -34,7 +33,7 @@ const Search = ({ initialQuery = null, placeholder, onSearch }) => {
 export default Search;
 
 Search.propTypes = {
-  initialQuery: PropTypes.string,
-  onSearch: PropTypes.func,
-  placeholder: PropTypes.string,
+  initialQuery: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };

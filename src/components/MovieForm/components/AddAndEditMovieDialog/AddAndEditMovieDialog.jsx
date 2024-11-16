@@ -23,7 +23,7 @@ AddAndEditMovieDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   movieToEdit: PropTypes.shape({
-    poster_path: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
     title: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
     vote_average: PropTypes.number,

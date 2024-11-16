@@ -1,0 +1,33 @@
+.app-header {
+  background-color: #232323;
+  width: 1200px;
+  height: 396px;
+  top: 54px;
+  left: 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.app-body {
+  width: 1200px;
+  background-color: #232323;
+  position: relative;
+}
+
+.app-footer {
+  background-color: #424242;
+  width: 1200px;
+  height: 70px;
+  top: 1771px;
+  left: 58px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.netflix {
+  color: #f65261;
+  font-size: 20px;
+}

@@ -139,7 +139,7 @@ export default MovieForm;
 
 MovieForm.propTypes = {
   initialMovie: PropTypes.shape({
-    poster_path: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
     title: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
     vote_average: PropTypes.number,
