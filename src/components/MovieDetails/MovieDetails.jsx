@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MovieDetails.css";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { getMovie } from "../../services.js";
 
 const MovieDetails = () => {
@@ -17,6 +17,7 @@ const MovieDetails = () => {
 
   return movie ? (
     <div className="movie-details">
+      <Outlet context={{ movie }}/>
       <button
         className="searchButton"
         onClick={() => navigate(`/${location.search}`)}

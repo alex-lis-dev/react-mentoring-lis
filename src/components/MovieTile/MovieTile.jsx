@@ -3,24 +3,20 @@ import PropTypes from "prop-types";
 import { useMemo } from "react";
 import ContextMenu from "./components/ContextMenu.jsx";
 import "./MovieTile.css";
-import AddAndEditMovieDialog from "../MovieForm/components/AddAndEditMovieDialog/AddAndEditMovieDialog.jsx";
-import DeleteMovieDialog from "../MovieForm/components/DeleteMovieDialog/DeleteMovieDialog.jsx"; 
+import DeleteMovieDialog from "../MovieForm/components/DeleteMovieDialog/DeleteMovieDialog.jsx";
+import { useNavigate } from "react-router-dom";
 
-const MovieTile = ({
-  movie,
-  onClick,
-}) => {
+const MovieTile = ({ movie, onClick }) => {
   const releaseYear = useMemo(
     () => new Date(movie.release_date).getFullYear(),
     [movie.release_date]
   );
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const toggleEditDialog = () => setIsEditDialogOpen(!isEditDialogOpen);
+  const navigate = useNavigate();
 
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const toggleDeleteDialog = () => setIsDeleteDialogOpen(!isDeleteDialogOpen);
 
-  const onEditClick = () => toggleEditDialog();
+  const onEditClick = () => navigate(`/${movie.id}/edit`);
   const onDeleteClick = () => toggleDeleteDialog();
 
   return (
@@ -30,12 +26,19 @@ const MovieTile = ({
           id={movie.id}
           handleEditItemCLick={onEditClick}
           handleDeleteItemClick={onDeleteClick}
-        ></ContextMenu>
+        />
       </div>
-      <AddAndEditMovieDialog isOpen={isEditDialogOpen} onClose={toggleEditDialog} movieToEdit={movie}/>
-      <DeleteMovieDialog isOpen={isDeleteDialogOpen} onClose={toggleDeleteDialog} movieToDelete={movie}/>
+      <DeleteMovieDialog
+        isOpen={isDeleteDialogOpen}
+        onClose={toggleDeleteDialog}
+        movieToDelete={movie}
+      />
       <div onClick={onClick}>
-        <img src={movie.poster_path} alt={movie.title} className="movie-poster" />
+        <img
+          src={movie.poster_path}
+          alt={movie.title}
+          className="movie-poster"
+        />
         <div className="movie-name">{movie.title}</div>
         <div className="movie-year">{releaseYear}</div>
         <div className="movie-genres">{movie.genres.join(", ")}</div>
@@ -57,5 +60,5 @@ MovieTile.propTypes = {
     runtime: PropTypes.number,
     overview: PropTypes.string,
     genres: PropTypes.array.isRequired,
-  })
+  }),
 };
