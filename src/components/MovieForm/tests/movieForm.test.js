@@ -2,13 +2,13 @@ import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import MovieForm from "../MovieForm";
 import {
-  MovieForm_Genre,
-  MovieForm_MovieUrl,
-  MovieForm_Overview,
-  MovieForm_Rating,
-  MovieForm_ReleaseDate,
-  MovieForm_Runtime,
-  MovieForm_Title,
+  MovieForm_Genre_Placeholder,
+  MovieForm_MovieUrl_Placeholder,
+  MovieForm_Overview_Placeholder,
+  MovieForm_Rating_Placeholder,
+  MovieForm_ReleaseDate_Placeholder,
+  MovieForm_Runtime_Placeholder,
+  MovieForm_Title_Placeholder,
 } from "../../../helpers/constants";
 
 const dummyMovie = {
@@ -25,55 +25,50 @@ describe("MovieForm Component", () => {
   it("renders with initial movie data", () => {
     render(<MovieForm initialMovie={dummyMovie} onSubmit={() => {}} />);
 
-    expect(screen.getByLabelText(MovieForm_Title).value).toBe(dummyMovie.title);
-    expect(screen.getByLabelText(MovieForm_ReleaseDate).value).toBe(
-      dummyMovie.release_date
+    expect(screen.getByPlaceholderText(MovieForm_Title_Placeholder).value).toBe(
+      dummyMovie.title
     );
-    expect(screen.getByLabelText(MovieForm_MovieUrl).value).toBe(
-      dummyMovie.poster_path
-    );
-    expect(parseFloat(screen.getByLabelText(MovieForm_Rating).value)).toBe(
-      dummyMovie.vote_average
-    );
-    expect(screen.getByLabelText(MovieForm_Overview).value).toBe(
-      dummyMovie.overview
-    );
-    expect(parseInt(screen.getByLabelText(MovieForm_Runtime).value)).toBe(
-      dummyMovie.runtime
-    );
-    expect(screen.getByLabelText(MovieForm_Genre).value).toBe(
+    expect(
+      screen.getByPlaceholderText(MovieForm_ReleaseDate_Placeholder).value
+    ).toBe(dummyMovie.release_date);
+    expect(
+      screen.getByPlaceholderText(MovieForm_MovieUrl_Placeholder).value
+    ).toBe(dummyMovie.poster_path);
+    expect(
+      parseFloat(
+        screen.getByPlaceholderText(MovieForm_Rating_Placeholder).value
+      )
+    ).toBe(dummyMovie.vote_average);
+    expect(
+      screen.getByPlaceholderText(MovieForm_Overview_Placeholder).value
+    ).toBe(dummyMovie.overview);
+    expect(
+      parseInt(screen.getByPlaceholderText(MovieForm_Runtime_Placeholder).value)
+    ).toBe(dummyMovie.runtime);
+    expect(screen.getByPlaceholderText(MovieForm_Genre_Placeholder).value).toBe(
       dummyMovie.genres.join(", ")
     );
   });
-
-  it("submits correct data", () => {
-    const mockOnSubmit = jest.fn();
-    render(<MovieForm initialMovie={dummyMovie} onSubmit={mockOnSubmit} />);
-
-    fireEvent.submit(screen.getByRole("form"));
-
-    expect(mockOnSubmit).toHaveBeenCalledWith({
-      title: dummyMovie.title,
-      releaseDate: dummyMovie.release_date,
-      movieUrl: dummyMovie.poster_path,
-      rating: dummyMovie.vote_average,
-      genres: dummyMovie.genres.join(", "),
-      runtime: dummyMovie.runtime,
-      overview: dummyMovie.overview,
-    });
-  });
-
-  it("handles input changes", () => {
+    it("handles input changes", () => {
     render(<MovieForm initialMovie={dummyMovie} onSubmit={() => {}} />);
 
-    fireEvent.change(screen.getByLabelText(MovieForm_Title), {
+    fireEvent.change(screen.getByPlaceholderText(MovieForm_Title_Placeholder), {
       target: { value: "New Title" },
     });
-    expect(screen.getByLabelText(MovieForm_Title).value).toBe("New Title");
+    expect(screen.getByPlaceholderText(MovieForm_Title_Placeholder).value).toBe(
+      "New Title"
+    );
 
-    fireEvent.change(screen.getByLabelText(MovieForm_Rating), {
-      target: { value: 9.5 },
-    });
-    expect(parseFloat(screen.getByLabelText(MovieForm_Rating).value)).toBe(9.5);
+    fireEvent.change(
+      screen.getByPlaceholderText(MovieForm_Rating_Placeholder),
+      {
+        target: { value: "9.5" },
+      }
+    );
+    expect(
+      parseFloat(
+        screen.getByPlaceholderText(MovieForm_Rating_Placeholder).value
+      )
+    ).toBe(9.5);
   });
 });

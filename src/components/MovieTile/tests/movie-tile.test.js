@@ -1,9 +1,16 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
+import { BrowserRouter as Router } from "react-router-dom";
 import MovieTile from "../MovieTile";
+import '@testing-library/jest-dom';
 
-describe("MovieTile Component", () => {
-  const mockOnClick = jest.fn();
+const mockNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockNavigate,
+}));
+
+const mockOnClick = jest.fn();
   const defaultProps = {
     movie: {
       id: 454,
@@ -18,8 +25,14 @@ describe("MovieTile Component", () => {
     onClick: mockOnClick,
   };
 
+describe('MovieTile Component', () => {
+
   it("renders the image, name, release year, and genres", () => {
-    render(<MovieTile {...defaultProps} />);
+    render(
+      <Router>
+        <MovieTile {...defaultProps} />
+      </Router>
+    );
     const image = screen.getByRole("img");
     expect(image).toHaveAttribute("src", defaultProps.movie.poster_path);
     expect(image).toHaveAttribute("alt", defaultProps.movie.title);
@@ -31,8 +44,45 @@ describe("MovieTile Component", () => {
     ).toBeInTheDocument();
   });
 
-  it("calls onClick when the tile is clicked", () => {
-    render(<MovieTile {...defaultProps} />);
+  it('opens edit dialog when edit is clicked', () => {
+    render(
+      <Router>
+        <MovieTile {...defaultProps} />
+      </Router>
+    );
+
+    const menuButton = screen.getByText("...");
+    fireEvent.click(menuButton);
+
+    const editButton = screen.getByText("Edit");
+    fireEvent.click(editButton);
+
+    expect(mockNavigate).toHaveBeenCalledWith(`/${defaultProps.movie.id}/edit`);
+  });
+
+  it('toggles delete dialog when delete is clicked', () => {
+    const { getByText } = render(
+      <Router>
+        <MovieTile {...defaultProps}/>
+      </Router>
+    );
+
+    const menuButton = screen.getByText("...");
+    fireEvent.click(menuButton);
+
+    const deleteButton = getByText("Delete");
+    fireEvent.click(deleteButton);
+
+    expect(screen.getByText(/Are you sure/i)).toBeInTheDocument();
+  });
+
+  it('triggers onClick when the movie tile gets clicked', () => {
+    render(
+      <Router>
+        <MovieTile {...defaultProps} />
+      </Router>
+    );
+
     fireEvent.click(screen.getByText(defaultProps.movie.title).parentNode);
     expect(mockOnClick).toHaveBeenCalled();
   });
