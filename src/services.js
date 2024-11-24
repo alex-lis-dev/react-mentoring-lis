@@ -1,5 +1,5 @@
 export const getMovies = async (sortBy, searchQuery, genre, signal) => {
-  const url = `http://localhost:4000/movies?filter=${genre}&searchBy=title&search=${searchQuery}&sortBy=${sortBy}&sortOrder=desc&limit=5000s`;
+  const url = `http://localhost:4000/movies?filter=${genre}&searchBy=title&search=${searchQuery}&sortBy=${sortBy}&sortOrder=desc&limit=5000`;
 
   const response = await fetch(url, {
     method: "GET",
