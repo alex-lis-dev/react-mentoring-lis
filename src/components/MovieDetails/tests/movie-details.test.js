@@ -18,6 +18,7 @@ describe("MovieDetails Component", () => {
   const useParams = jest.spyOn(router, "useParams");
   const useNavigate = jest.spyOn(router, "useNavigate");
   const useLocation = jest.spyOn(router, "useLocation");
+  const useOutletContext = jest.spyOn(router, "useOutletContext");
   const getMovieMock = jest.spyOn(services, "getMovie");
 
   beforeEach(() => {
@@ -25,6 +26,7 @@ describe("MovieDetails Component", () => {
     useNavigate.mockReturnValue(jest.fn());
     useLocation.mockReturnValue({ search: "?query=test" });
     getMovieMock.mockResolvedValue(mockMovie);
+    router.useOutletContext.mockReturnValue({ onMoviesUpdate: jest.fn() });
   });
 
   it("renders the loading state initially", () => {
