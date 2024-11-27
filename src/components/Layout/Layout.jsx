@@ -13,6 +13,7 @@ const Layout = () => {
   const query = searchParams.get("query") || "";
   const genre = searchParams.get("genre") || genres[0];
   const sortBy = searchParams.get("sortBy") || sortOptions[0];
+  const [updateFlag, setUpdateFlag] = useState(false);
 
   const handleSearch = (value) => {
     setSearchParams({ ...Object.fromEntries(searchParams), query: value });
@@ -39,11 +40,18 @@ const Layout = () => {
       });
 
     return () => controller.abort();
-  }, [query, genre, sortBy]);
+  }, [query, genre, sortBy, updateFlag]);
+
+  const handleMovieUpdate = () => {
+    setUpdateFlag((prev) => !prev);
+  };
+
   return (
     <>
       <header className="app-header">
-        <Outlet context={{ query, handleSearch }} />
+        <Outlet
+          context={{ query, handleSearch, onMoviesUpdate: handleMovieUpdate }}
+        />
       </header>
       <div className="app-body">
         <MovieListPage

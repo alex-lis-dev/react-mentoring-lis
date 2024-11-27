@@ -35,5 +35,5 @@ export default Search;
 Search.propTypes = {
   initialQuery: PropTypes.string.isRequired,
   onSearch: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
 };

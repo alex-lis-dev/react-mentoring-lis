@@ -1,5 +1,5 @@
 import { PropTypes } from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 import {
   MovieForm_Button_RESET,
   MovieForm_Button_Submit,
@@ -16,114 +16,109 @@ import {
   MovieForm_Runtime,
   MovieForm_Runtime_Placeholder,
   MovieForm_Title,
+  MovieForm_Title_Placeholder,
 } from "../../helpers/constants";
 import "./MovieForm.css";
-import { MovieForm_Title_Placeholder } from "../../helpers/constants";
 import FormField from "./components/FormField/FormField";
+import { Controller, useForm } from "react-hook-form";
 
 const MovieForm = ({ initialMovie, onSubmit }) => {
-  const mapInitialMovieFields = {
-    title: initialMovie && initialMovie.title ? initialMovie.title : "",
-    releaseDate:
-      initialMovie && initialMovie.release_date
-        ? initialMovie.release_date
-        : "",
-    movieUrl:
-      initialMovie && initialMovie.poster_path ? initialMovie.poster_path : "",
-    rating:
-      initialMovie && initialMovie.vote_average
-        ? initialMovie.vote_average
-        : "",
-    genres:
-      initialMovie && initialMovie.genres ? initialMovie.genres.join(", ") : "",
-    runtime: initialMovie && initialMovie.runtime ? initialMovie.runtime : "",
-    overview:
-      initialMovie && initialMovie.overview ? initialMovie.overview : "",
-  };
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      title: initialMovie?.title || "",
+      releaseDate: initialMovie?.release_date || "",
+      movieUrl: initialMovie?.poster_path || "",
+      rating: initialMovie?.vote_average || "",
+      genres: initialMovie?.genres?.join(", ") || "",
+      runtime: initialMovie?.runtime || "",
+      overview: initialMovie?.overview || "",
+    },
+  });
 
-  const [formData, setFormData] = useState(mapInitialMovieFields);
-
-  const handleChange = (key, value) => {
-    setFormData({
-      ...formData,
-      [key]: value,
-    });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onSubmit(formData);
-  };
-
-  const handleReset = () => {
-    setFormData(mapInitialMovieFields);
-  };
+  const formFields = [
+    {
+      name: "title",
+      type: "text",
+      placeholder: MovieForm_Title_Placeholder,
+      label: MovieForm_Title,
+      rules: { required: "Title is required" },
+    },
+    {
+      name: "releaseDate",
+      type: "date",
+      placeholder: MovieForm_ReleaseDate_Placeholder,
+      label: MovieForm_ReleaseDate,
+      rules: { required: "Release date is required" },
+    },
+    {
+      name: "movieUrl",
+      type: "text",
+      placeholder: MovieForm_MovieUrl_Placeholder,
+      label: MovieForm_MovieUrl,
+      rules: { required: "Movie URL is required" },
+    },
+    {
+      name: "rating",
+      type: "number",
+      placeholder: MovieForm_Rating_Placeholder,
+      label: MovieForm_Rating,
+      rules: { required: "Rating is required", min: 0, max: 10 },
+    },
+    {
+      name: "genres",
+      type: "text",
+      placeholder: MovieForm_Genre_Placeholder,
+      label: MovieForm_Genre,
+      rules: { required: "Genres are required" },
+    },
+    {
+      name: "runtime",
+      type: "number",
+      placeholder: MovieForm_Runtime_Placeholder,
+      label: MovieForm_Runtime,
+      rules: { required: "Runtime is required", min: 1 },
+    },
+    {
+      name: "overview",
+      type: "textarea",
+      placeholder: MovieForm_Overview_Placeholder,
+      label: MovieForm_Overview,
+      rules: { required: "Overview is required" },
+    },
+  ];
 
   return (
-    <form name="MovieForm" onSubmit={handleSubmit}>
+    <form name="MovieForm" onSubmit={handleSubmit(onSubmit)}>
       <div className="movie-form">
-        <FormField
-          inputKey="title"
-          type="text"
-          initialValue={formData.title}
-          placeholder={MovieForm_Title_Placeholder}
-          labelTitle={MovieForm_Title}
-          onChange={(e) => handleChange("title", e.target.value)}
-        />
-        <FormField
-          inputKey="releaseDate"
-          type="date"
-          initialValue={formData.releaseDate}
-          placeholder={MovieForm_ReleaseDate_Placeholder}
-          labelTitle={MovieForm_ReleaseDate}
-          onChange={(e) => handleChange("releaseDate", e.target.value)}
-        />
-        <FormField
-          inputKey="movieUrl"
-          type="text"
-          initialValue={formData.movieUrl}
-          placeholder={MovieForm_MovieUrl_Placeholder}
-          labelTitle={MovieForm_MovieUrl}
-          onChange={(e) => handleChange("movieUrl", e.target.value)}
-        />
-        <FormField
-          inputKey="rating"
-          type="number"
-          initialValue={formData.rating}
-          placeholder={MovieForm_Rating_Placeholder}
-          labelTitle={MovieForm_Rating}
-          onChange={(e) => handleChange("rating", e.target.value)}
-        />
-        <FormField
-          inputKey="genres"
-          type="text"
-          initialValue={formData.genres}
-          placeholder={MovieForm_Genre_Placeholder}
-          labelTitle={MovieForm_Genre}
-          onChange={(e) => handleChange("genres", e.target.value)}
-        />
-        <FormField
-          inputKey="runtime"
-          type="number"
-          initialValue={formData.runtime}
-          placeholder={MovieForm_Runtime_Placeholder}
-          labelTitle={MovieForm_Runtime}
-          onChange={(e) => handleChange("runtime", e.target.value)}
-        />
+        {formFields.map((formField) => (
+          <Controller
+            key={formField.name}
+            name={formField.name}
+            control={control}
+            rules={formField.rules}
+            render={({ field }) => (
+              <FormField
+                inputKey={formField.name}
+                type={formField.type}
+                placeholder={formField.placeholder}
+                labelTitle={formField.label}
+                field={field}
+                error={errors[formField.name]}
+              />
+            )}
+          />
+        ))}
       </div>
-      <FormField
-        inputKey="overview"
-        type="textarea"
-        initialValue={formData.overview}
-        placeholder={MovieForm_Overview_Placeholder}
-        labelTitle={MovieForm_Overview}
-        onChange={(e) => handleChange("overview", e.target.value)}
-      />
       <div className="movie-form-buttons">
         <button
           className="movie-form-buttons-reset"
           type="button"
-          onClick={handleReset}
+          onClick={() => reset()}
         >
           {MovieForm_Button_RESET}
         </button>

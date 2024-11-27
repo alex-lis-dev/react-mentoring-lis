@@ -6,33 +6,36 @@ const FormField = ({
   type,
   labelTitle,
   placeholder,
-  initialValue,
-  onChange
+  field,
+  error,
 }) => {
   const InputComponent = type === "textarea" ? "textarea" : "input";
 
   return (
-    <div className="form-field">
+    <div className={`form-field ${error ? "error" : ""}`}>
       <label htmlFor={inputKey}>{labelTitle}</label>
       <InputComponent
-        value={initialValue}
-        name={inputKey}
+        {...field}
         id={inputKey}
+        name={inputKey}
         type={type}
         placeholder={placeholder}
-        onChange={onChange}
+        className={error ? "is-invalid" : ""}
       />
+      {error && <p className="error-message">{error.message}</p>}
     </div>
   );
 };
-
-export default FormField;
 
 FormField.propTypes = {
   inputKey: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   labelTitle: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  initialValue: PropTypes.any.isRequired,
-  onChange: PropTypes.func.isRequired
+  field: PropTypes.object.isRequired,
+  error: PropTypes.shape({
+    message: PropTypes.string,
+  }),
 };
+
+export default FormField;
