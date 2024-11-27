@@ -8,7 +8,7 @@ import { Outlet, useNavigate, useOutletContext } from "react-router-dom";
 import "./SearchContainer.css";
 
 const SearchContainer = () => {
-  const { query, handleSearch } = useOutletContext();
+  const { query, handleSearch, onMoviesUpdate } = useOutletContext();
   const navigate = useNavigate();
 
   return (
@@ -19,7 +19,7 @@ const SearchContainer = () => {
           <button className="add-movie-button" onClick={() => navigate(`/new`)}>
             {AddMovieButtonText}
           </button>
-          <Outlet context={{ movie: null }} />
+          <Outlet context={{ movie: null, onMovieUpdate: onMoviesUpdate }} />
         </div>
         <Search
           placeholder={SearchForm_Placeholder}

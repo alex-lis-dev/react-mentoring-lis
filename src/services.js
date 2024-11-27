@@ -1,5 +1,5 @@
 export const getMovies = async (sortBy, searchQuery, genre, signal) => {
-  const url = `http://localhost:4000/movies?filter=${genre}&searchBy=title&search=${searchQuery}&sortBy=${sortBy}&sortOrder=desc&limit=5000`;
+  const url = `http://localhost:4000/movies?filter=${genre}&searchBy=title&search=${searchQuery}&sortBy=${sortBy}&sortOrder=desc&limit=25`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -36,7 +36,7 @@ export const createMovie = async (movie) => {
     method: "POST",
     body: JSON.stringify(movie),
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
   });
 
@@ -51,7 +51,7 @@ export const updateMovie = async (movie) => {
     method: "PUT",
     body: JSON.stringify(movie),
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
   });
 

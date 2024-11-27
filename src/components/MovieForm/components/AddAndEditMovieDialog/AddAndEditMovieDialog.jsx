@@ -6,7 +6,7 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { createMovie, updateMovie } from "../../../../services";
 
 const AddAndEditMovieDialog = () => {
-  const { movie } = useOutletContext();
+  const { movie, onMovieUpdate } = useOutletContext();
   const navigate = useNavigate();
 
   const closeForm = () => {
@@ -35,6 +35,7 @@ const AddAndEditMovieDialog = () => {
       await updateMovie(updatedMovie);
     }
 
+    onMovieUpdate();
     closeForm();
   };
 
