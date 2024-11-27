@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import "./Search.css";
+import styles from "./styles.module.css";
 import { Search_Header_Text, SearchForm_Button_Search } from "../../helpers/constants";
 
 const Search = ({ initialQuery, placeholder, onSearch }) => {
@@ -16,7 +16,7 @@ const Search = ({ initialQuery, placeholder, onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="search-form">
+    <form onSubmit={handleSubmit} className={styles.searchForm}>
       <div>{Search_Header_Text}</div>
       <input
         data-testid="search-input"

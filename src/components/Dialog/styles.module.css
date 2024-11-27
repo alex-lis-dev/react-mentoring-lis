@@ -1,4 +1,4 @@
-.dialog-backdrop {
+.dialogBackdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -22,14 +22,14 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.dialog-header {
+.dialogHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #FFFFFF;
 }
 
-.dialog-header h2 {
+.dialogHeader h2 {
     margin: 0;
     font-family: Montserrat;
     font-size: 40px;
@@ -39,7 +39,7 @@
     text-align: left;
 }
 
-.dialog-header button {
+.dialogHeader button {
     border: none;
     background: transparent;
     font-size: 24px;
@@ -47,6 +47,6 @@
     color: #FFFFFF;
 }
 
-.dialog-body {
+.dialogBody {
     margin-top: 20px;
 }

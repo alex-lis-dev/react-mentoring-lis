@@ -5,7 +5,7 @@ import MovieListPage from "../MovieListPage/MovieListPage";
 import sortOptions from "../../helpers/sortOptions";
 import { getMovies } from "../../services";
 import genres from "../../helpers/genres";
-import "./Layout.css";
+import styles from "./styles.module.css";
 
 const Layout = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -48,12 +48,12 @@ const Layout = () => {
 
   return (
     <>
-      <header className="app-header">
-        <Outlet
+      <header className={styles.appHeader}>
+      <Outlet
           context={{ query, handleSearch, onMoviesUpdate: handleMovieUpdate }}
         />
       </header>
-      <div className="app-body">
+      <div className={styles.appBody}>
         <MovieListPage
           genre={genre}
           sortBy={sortBy}
@@ -63,8 +63,8 @@ const Layout = () => {
         />
       </div>
 
-      <footer className="app-footer">
-        <div className="netflix">
+      <footer className={styles.appFooter}>
+        <div className={styles.netflix}>
           <strong>netflix</strong>roulette
         </div>
         <Counter initialValue={13}></Counter>

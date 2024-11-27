@@ -1,4 +1,4 @@
-.app-header {
+.appHeader {
   background-color: #232323;
   width: 1200px;
   height: 396px;
@@ -11,13 +11,13 @@
   color: white;
 }
 
-.app-body {
+.appBody {
   width: 1200px;
   background-color: #232323;
   position: relative;
 }
 
-.app-footer {
+.appFooter {
   background-color: #424242;
   width: 1200px;
   height: 70px;

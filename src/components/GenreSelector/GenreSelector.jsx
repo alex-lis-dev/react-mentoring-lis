@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import "./GenreSelector.css";
+import styles from "./styles.module.css"
 
 const GenreSelector = ({ genres, selectedGenre = "All", onSelect }) => {
   const [currentGenre, setCurrentGenre] = useState(selectedGenre);
@@ -9,11 +9,11 @@ const GenreSelector = ({ genres, selectedGenre = "All", onSelect }) => {
     onSelect(genre);
   };
   return (
-    <div className="genre-selector-container">
+    <div className={styles.genreSelectorContainer}>
       {genres.map((genre) => (
         <button
           key={genre}
-          className={genre === currentGenre ? "active" : ""}
+          className={genre === currentGenre ? styles.active : ""}
           onClick={() => handleGenreClick(genre)}
         >
           {genre.toUpperCase()}

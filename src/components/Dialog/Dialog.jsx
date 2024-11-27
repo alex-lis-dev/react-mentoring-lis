@@ -1,7 +1,7 @@
 import React from "react";
 import { Portal } from "react-portal";
 import FocusTrap from "focus-trap-react";
-import "./Dialog.css";
+import styles from "./styles.module.css";
 import PropTypes from "prop-types";
 
 const Dialog = ({ title, children, active, onClose }) => {
@@ -9,13 +9,13 @@ const Dialog = ({ title, children, active, onClose }) => {
     active && (
       <Portal>
         <FocusTrap>
-          <div className="dialog-backdrop">
-            <div role="dialog" className="dialog">
-              <div className="dialog-header">
+          <div className={styles.dialogBackdrop}>
+            <div role="dialog" className={styles.dialog}>
+              <div className={styles.dialogHeader}>
                 <p>{title}</p>
                 <button onClick={onClose}>&times;</button>
               </div>
-              <div className="dialog-body">{children}</div>
+              <div className={styles.dialogBody}>{children}</div>
             </div>
           </div>
         </FocusTrap>

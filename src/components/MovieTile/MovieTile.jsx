@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
 import ContextMenu from "./components/ContextMenu.jsx";
-import "./MovieTile.css";
+import styles from "./styles.module.css";
 import DeleteMovieDialog from "../MovieForm/components/DeleteMovieDialog/DeleteMovieDialog.jsx";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const MovieTile = ({ movie, onClick }) => {
   const onDeleteClick = () => toggleDeleteDialog();
 
   return (
-    <div className="movie-tile-container">
+    <div className={styles.movieTileContainer}>
       <div>
         <ContextMenu
           id={movie.id}
@@ -37,11 +37,11 @@ const MovieTile = ({ movie, onClick }) => {
         <img
           src={movie.poster_path}
           alt={movie.title}
-          className="movie-poster"
+          className={styles.moviePoster}
         />
-        <div className="movie-name">{movie.title}</div>
-        <div className="movie-year">{releaseYear}</div>
-        <div className="movie-genres">{movie.genres.join(", ")}</div>
+        <div className={styles.movieName}>{movie.title}</div>
+        <div className={styles.movieYear}>{releaseYear}</div>
+        <div className={styles.movieGenres}>{movie.genres.join(", ")}</div>
       </div>
     </div>
   );

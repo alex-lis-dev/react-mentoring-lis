@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./MovieDetails.css";
+import styles from "./styles.module.css";
 import {
   Outlet,
   useLocation,
@@ -29,16 +29,16 @@ const MovieDetails = () => {
   };
 
   return movie ? (
-    <div className="movie-details">
+    <div className={styles.movieDetails}>
       <Outlet context={{ movie, onMovieUpdate: handleMovieUpdate }} />
       <button
-        className="searchButton"
+        className={styles.searchButton}
         onClick={() => navigate(`/${location.search}`)}
       >
         Search
       </button>
-      <img src={movie.poster_path} alt={movie.title} className="movie-poster" />
-      <div className="movie-info">
+      <img src={movie.poster_path} alt={movie.title} className={styles.moviePoster} />
+      <div className={styles.movieInfo}>
         <h2>{movie.title}</h2>
         <p>{new Date(movie.release_date).getFullYear()}</p>
         <p>{movie.vote_average}</p>
