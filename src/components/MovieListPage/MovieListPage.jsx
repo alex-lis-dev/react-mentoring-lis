@@ -1,11 +1,11 @@
 import GenreSelector from "../GenreSelector/GenreSelector";
 import MovieTile from "../MovieTile/MovieTile";
 import SortControl from "../SortControl/SortControl";
-import { useLocation, useNavigate } from "react-router-dom";
 import genres from "../../helpers/genres.js";
 import PropTypes from "prop-types";
 import React from "react";
 import styles from "./styles.module.css";
+import { useRouter } from "next/router.js";
 
 const MovieListPage = ({
   genre,
@@ -14,10 +14,16 @@ const MovieListPage = ({
   handleSortChange,
   orderedMovies,
 }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const handleMovieClick = (movieId) =>
-    navigate(`/${movieId}${location.search}`);
+  const handleMovieClick = (movieId) => {
+    const router = useRouter();
+    if (typeof window !== "undefined") {
+      const query = router.query;
+      router.push({
+        pathname: `/${movieId}`,
+        query,
+      });
+    }
+  };
 
   return (
     <>
