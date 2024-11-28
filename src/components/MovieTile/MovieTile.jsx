@@ -4,19 +4,19 @@ import { useMemo } from "react";
 import ContextMenu from "./components/ContextMenu.jsx";
 import styles from "./styles.module.css";
 import DeleteMovieDialog from "../MovieForm/components/DeleteMovieDialog/DeleteMovieDialog.jsx";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router.js";
 
 const MovieTile = ({ movie, onClick }) => {
   const releaseYear = useMemo(
     () => new Date(movie.release_date).getFullYear(),
     [movie.release_date]
   );
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const toggleDeleteDialog = () => setIsDeleteDialogOpen(!isDeleteDialogOpen);
 
-  const onEditClick = () => navigate(`/${movie.id}/edit`);
+  const onEditClick = () => router.push(`/${movie.id}/edit`);
   const onDeleteClick = () => toggleDeleteDialog();
 
   return (
