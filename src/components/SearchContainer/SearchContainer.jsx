@@ -4,12 +4,11 @@ import {
   SearchForm_Placeholder,
 } from "../../helpers/constants";
 import Search from "../Search/Search";
-import { Outlet, useNavigate, useOutletContext } from "react-router-dom";
 import styles from "./styles.module.css";
+import { useRouter } from "next/router";
 
-const SearchContainer = () => {
-  const { query, handleSearch, onMoviesUpdate } = useOutletContext();
-  const navigate = useNavigate();
+const SearchContainer = ({ children, query, handleSearch }) => {
+  const router = useRouter();
 
   return (
     <div className={styles.searchContainer}>
@@ -18,11 +17,11 @@ const SearchContainer = () => {
         <div>
           <button
             className={styles.addMovieButton}
-            onClick={() => navigate(`/new`)}
+            onClick={() => router.push(`/new`)}
           >
             {AddMovieButtonText}
           </button>
-          <Outlet context={{ movie: null, onMovieUpdate: onMoviesUpdate }} />
+          {children}
         </div>
         <Search
           placeholder={SearchForm_Placeholder}
