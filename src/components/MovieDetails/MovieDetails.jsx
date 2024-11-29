@@ -1,44 +1,27 @@
-import React, { useEffect, useState } from "react";
-import "./MovieDetails.css";
-import {
-  Outlet,
-  useLocation,
-  useNavigate,
-  useOutletContext,
-  useParams,
-} from "react-router-dom";
-import { getMovie } from "../../services.js";
+import React from "react";
+import styles from "./styles.module.css";
+import { useRouter } from "next/router.js";
+import Link from "next/link";
 
-const MovieDetails = () => {
-  const { movieId } = useParams();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [movie, setMovie] = useState(null);
-  const [updateFlag, setUpdateFlag] = useState(false);
-  const { onMoviesUpdate } = useOutletContext();
+const MovieDetails = ({ movie }) => {
+  const router = useRouter();
+  const { movieId, ...otherQueries } = router.query;
 
-  useEffect(() => {
-    getMovie(movieId)
-      .then(setMovie)
-      .catch((err) => console.error("Error fetching movie details:", err));
-  }, [movieId, updateFlag]);
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
-  const handleMovieUpdate = () => {
-    setUpdateFlag((prev) => !prev);
-    onMoviesUpdate();
-  };
-
-  return movie ? (
-    <div className="movie-details">
-      <Outlet context={{ movie, onMovieUpdate: handleMovieUpdate }} />
-      <button
-        className="searchButton"
-        onClick={() => navigate(`/${location.search}`)}
-      >
+  return (
+    <div className={styles.movieDetails}>
+      <Link className={styles.searchButton} href={"/"} passHref>
         Search
-      </button>
-      <img src={movie.poster_path} alt={movie.title} className="movie-poster" />
-      <div className="movie-info">
+      </Link>
+      <img
+        src={movie.poster_path}
+        alt={movie.title}
+        className={styles.moviePoster}
+      />
+      <div className={styles.movieInfo}>
         <h2>{movie.title}</h2>
         <p>{new Date(movie.release_date).getFullYear()}</p>
         <p>{movie.vote_average}</p>
@@ -46,8 +29,6 @@ const MovieDetails = () => {
         <p>{movie.overview}</p>
       </div>
     </div>
-  ) : (
-    <div>Loading...</div>
   );
 };
 

@@ -1,27 +1,28 @@
-.movie-form {
+.movieForm {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
-.form-field {
+.formField {
   display: flex;
   flex-direction: column;
 }
 
-.movie-form input,
-.movie-form textarea {
+.movieForm input,
+.movieForm textarea {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
 }
-.movie-form-buttons{
+
+.movieFormButtons{
 position: relative;
 margin-top: 20px;
 margin-bottom: 20px;
 }
 
-.movie-form-buttons-reset{
+.movieFormButtonsReset{
 all:unset;
 position: absolute;
 right: 160px;
@@ -30,7 +31,8 @@ background-color: #232323;
 padding: 10px 40px;
 border-radius: 5px;
 }
-.movie-form-buttons-submit{
+
+.movieFormButtonsSubmit{
 all:unset;
 position: absolute;
 right: 10px;
@@ -38,5 +40,4 @@ background-color: #f65261;
 color: #ffffff;
 padding: 10px 40px;
 border-radius: 5px;
-
 }

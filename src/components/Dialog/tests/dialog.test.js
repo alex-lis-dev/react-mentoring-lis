@@ -68,7 +68,7 @@ describe("Dialog Component Tests", () => {
     );
     const dialogElement = screen.getByRole("dialog");
     expect(dialogElement).toHaveClass("dialog");
-    expect(dialogElement.firstChild).toHaveClass("dialog-header");
-    expect(dialogElement.firstChild.nextSibling).toHaveClass("dialog-body");
+    expect(dialogElement.firstChild).toHaveClass("dialogHeader");
+    expect(dialogElement.firstChild.nextSibling).toHaveClass("dialogBody");
   });
 });

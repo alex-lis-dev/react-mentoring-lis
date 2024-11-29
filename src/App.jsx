@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
+import styles from "./styles.module.css";
 import SearchContainer from "./components/SearchContainer/SearchContainer";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 import Layout from "./components/Layout/Layout";
@@ -9,8 +9,8 @@ import AddAndEditMovieDialog from "./components/MovieForm/components/AddAndEditM
 function App() {
   return (
     <Router>
-      <div className="app">
-        <Routes>
+      <div className={styles.app}>
+      <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="" element={<SearchContainer />}>
               <Route path="new" element={<AddAndEditMovieDialog />} />

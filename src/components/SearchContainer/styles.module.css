@@ -1,4 +1,4 @@
-.search-container {
+.searchContainer {
   position: relative;
   width: 100%;
   height: 100%;
@@ -11,7 +11,7 @@
   background-repeat: no-repeat;
 }
 
-.blur-effect {
+.blurEffect {
   position: absolute;
   top: 0;
   left: 0;
@@ -31,7 +31,7 @@
   height: 100%;
 }
 
-.add-movie-button {
+.addMovieButton {
   all: unset;
   position: absolute;
   color: #f65261;

@@ -6,7 +6,7 @@ import {
   ReleaseDateText,
   TitleText,
 } from "../../helpers/constants";
-import "./SortControl.css"
+import styles from "./styles.module.css";
 
 const SortControl = ({ currentSelection = sortOptions[0], onSortChange }) => {
   const handleChange = (event) => {
@@ -14,11 +14,11 @@ const SortControl = ({ currentSelection = sortOptions[0], onSortChange }) => {
   };
 
   return (
-    <div className="sort-control">
+    <div className={styles.sortControl}>
       <label htmlFor="sort-select">{SortByText}</label>
-      <select id="sort-select" className="sort-select" value={currentSelection} onChange={handleChange}>
-        <option className="sort-option" value={sortOptions[0]}>{ReleaseDateText}</option>
-        <option className="sort-option" value={sortOptions[1]}>{TitleText}</option>
+      <select id="sort-select" className={styles.sortSelect} value={currentSelection} onChange={handleChange}>
+        <option className={styles.sortOption} value={sortOptions[0]}>{ReleaseDateText}</option>
+        <option className={styles.sortOption} value={sortOptions[1]}>{TitleText}</option>
       </select>
     </div>
   );

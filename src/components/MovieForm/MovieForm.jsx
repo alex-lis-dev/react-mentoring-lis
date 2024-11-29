@@ -18,7 +18,7 @@ import {
   MovieForm_Title,
   MovieForm_Title_Placeholder,
 } from "../../helpers/constants";
-import "./MovieForm.css";
+import styles from "./styles.module.css";
 import FormField from "./components/FormField/FormField";
 import { Controller, useForm } from "react-hook-form";
 
@@ -94,8 +94,8 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
 
   return (
     <form name="MovieForm" onSubmit={handleSubmit(onSubmit)}>
-      <div className="movie-form">
-        {formFields.map((formField) => (
+      <div className={styles.movieForm}>
+      {formFields.map((formField) => (
           <Controller
             key={formField.name}
             name={formField.name}
@@ -114,15 +114,15 @@ const MovieForm = ({ initialMovie, onSubmit }) => {
           />
         ))}
       </div>
-      <div className="movie-form-buttons">
+      <div className={styles.movieFormButtons}>
         <button
-          className="movie-form-buttons-reset"
+          className={styles.movieFormButtonsReset}
           type="button"
           onClick={() => reset()}
         >
           {MovieForm_Button_RESET}
         </button>
-        <button className="movie-form-buttons-submit" type="submit">
+        <button className={styles.movieFormButtonsSubmit} type="submit">
           {MovieForm_Button_Submit}
         </button>
       </div>

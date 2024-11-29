@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
-import "./ContextMenu.css";
+import styles from "./styles.module.css";
 
 const ContextMenu = ({ handleEditItemCLick, handleDeleteItemClick }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,12 +11,12 @@ const ContextMenu = ({ handleEditItemCLick, handleDeleteItemClick }) => {
   };
 
   return (
-    <div className="context-menu">
+    <div className={styles.contextMenu}>
       <button ref={menuRef} onClick={handleMenuClick}>
         ...
       </button>
       {isOpen && (
-        <ul className="menu">
+        <ul className={styles.menu}>
           <li onClick={handleEditItemCLick}>Edit</li>
           <li onClick={handleDeleteItemClick}>Delete</li>
         </ul>

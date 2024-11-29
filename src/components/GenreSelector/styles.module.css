@@ -1,4 +1,4 @@
-.genre-selector-container{    
+.genreSelectorContainer{    
   display: flex;
   justify-content: flex-start;
   position: absolute;
@@ -6,7 +6,7 @@
   left: 40px;
 }
 
-.genre-selector-container button{
+.genreSelectorContainer button{
     all: unset;
     background: none;
     padding: 0px 7.5px;
@@ -19,6 +19,6 @@
     border-bottom: 3px solid #424242;
 }
 
-.genre-selector-container button.active {
+.genreSelectorContainer button.active {
   border-bottom-color: #F65261;
 }

@@ -4,22 +4,24 @@ import {
   SearchForm_Placeholder,
 } from "../../helpers/constants";
 import Search from "../Search/Search";
-import { Outlet, useNavigate, useOutletContext } from "react-router-dom";
-import "./SearchContainer.css";
+import styles from "./styles.module.css";
+import { useRouter } from "next/router";
 
-const SearchContainer = () => {
-  const { query, handleSearch, onMoviesUpdate } = useOutletContext();
-  const navigate = useNavigate();
+const SearchContainer = ({ children, query, handleSearch }) => {
+  const router = useRouter();
 
   return (
-    <div className="search-container">
-      <div className="blur-effect"></div>
-      <div className="content">
+    <div className={styles.searchContainer}>
+      <div className={styles.blurEffect}></div>
+      <div className={styles.content}>
         <div>
-          <button className="add-movie-button" onClick={() => navigate(`/new`)}>
+          <button
+            className={styles.addMovieButton}
+            onClick={() => router.push(`/new`)}
+          >
             {AddMovieButtonText}
           </button>
-          <Outlet context={{ movie: null, onMovieUpdate: onMoviesUpdate }} />
+          {children}
         </div>
         <Search
           placeholder={SearchForm_Placeholder}

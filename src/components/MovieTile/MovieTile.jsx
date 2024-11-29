@@ -2,25 +2,25 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
 import ContextMenu from "./components/ContextMenu.jsx";
-import "./MovieTile.css";
+import styles from "./styles.module.css";
 import DeleteMovieDialog from "../MovieForm/components/DeleteMovieDialog/DeleteMovieDialog.jsx";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router.js";
+import Link from "next/link.js";
 
 const MovieTile = ({ movie, onClick }) => {
   const releaseYear = useMemo(
     () => new Date(movie.release_date).getFullYear(),
     [movie.release_date]
   );
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const toggleDeleteDialog = () => setIsDeleteDialogOpen(!isDeleteDialogOpen);
-
-  const onEditClick = () => navigate(`/${movie.id}/edit`);
+  const onEditClick = () => router.push(`/${movie.id}/edit`);
   const onDeleteClick = () => toggleDeleteDialog();
 
   return (
-    <div className="movie-tile-container">
+    <div className={styles.movieTileContainer}>
       <div>
         <ContextMenu
           id={movie.id}
@@ -34,14 +34,16 @@ const MovieTile = ({ movie, onClick }) => {
         movieToDelete={movie}
       />
       <div onClick={onClick}>
-        <img
-          src={movie.poster_path}
-          alt={movie.title}
-          className="movie-poster"
-        />
-        <div className="movie-name">{movie.title}</div>
-        <div className="movie-year">{releaseYear}</div>
-        <div className="movie-genres">{movie.genres.join(", ")}</div>
+        <Link href={`${movie.id}`} passHref>
+          <img
+            src={movie.poster_path}
+            alt={movie.title}
+            className={styles.moviePoster}
+          />
+        </Link>
+        <div className={styles.movieName}>{movie.title}</div>
+        <div className={styles.movieYear}>{releaseYear}</div>
+        <div className={styles.movieGenres}>{movie.genres.join(", ")}</div>
       </div>
     </div>
   );

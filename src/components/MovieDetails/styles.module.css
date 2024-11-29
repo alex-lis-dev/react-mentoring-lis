@@ -1,4 +1,4 @@
-.movie-details {
+.movieDetails {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,13 +6,13 @@
   position: relative;
 }
 
-.movie-poster {
+.moviePoster {
   width: 200px;
   height: 300px;
   margin-right: 20px;
 }
 
-.movie-info {
+.movieInfo {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
